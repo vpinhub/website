@@ -1,0 +1,264 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPINHUB | Competition Archive</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Encode Sans', sans-serif; background: #020617; color: white; transition: background 0.5s ease; }
+        .medieval { font-family: 'MedievalSharp', cursive; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .theme-throwdown { --accent: #f97316; background-color: #0c0a09; }
+        .theme-swl { --accent: #d946ef; background-color: #0f0a0f; }
+        .accent-text { color: var(--accent, #94a3b8); }
+        .accent-border { border-color: var(--accent, #334155); }
+        
+        select { 
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e"); 
+            background-position: right 0.5rem center; 
+            background-repeat: no-repeat; 
+            background-size: 1.5em 1.5em; 
+            padding-right: 2.5rem; 
+            -webkit-appearance: none; 
+            -moz-appearance: none; 
+            appearance: none; 
+        }
+        select option { background-color: #0f172a; color: white; padding: 10px; }
+
+        /* Achievement Colors */
+        .card-red { border-left-color: #ef4444; }
+        .card-orange { border-left-color: #f97316; }
+        .card-green { border-left-color: #22c55e; }
+        .card-purple { border-left-color: #a855f7; }
+        .card-blue { border-left-color: #3b82f6; }
+        .card-pink { border-left-color: #ec4899; } /* Burns */
+        .card-stone { border-left-color: #78716c; } /* Spoon */
+        .card-yellow { border-left-color: #eab308; } /* Price is Right */
+        .card-gold { border-left-color: #ffd700; background: rgba(255, 215, 0, 0.05); } /* Billionaire */
+    </style>
+</head>
+<body class="min-h-screen">
+
+    <div class="flex flex-col min-h-screen">
+        <nav id="archive-nav" class="glass border-b border-white/10 p-6 sticky top-0 z-50">
+            <div class="container mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-4">
+                    <a href="index.html" class="bg-white/10 hover:bg-white/20 p-2 rounded-lg transition-colors">🏠</a>
+                    <div>
+                        <a href="../" class="hover:opacity-80 transition-opacity"><h1 class="text-2xl font-black italic tracking-tighter uppercase leading-none">VPIN<span class="text-orange-500">HUB</span></h1></a>
+                        <p class="text-[10px] text-gray-500 font-bold uppercase tracking-widest mt-1">Competition Archive</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
+                    <select id="type-filter" onchange="populateArchiveDropdown()" class="bg-slate-900 border border-white/10 rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest outline-none cursor-pointer min-w-[200px] text-white">
+                        <option value="all">All Competitions</option>
+                        <option value="Thursday_Throwdown">Thursday Throwdown</option>
+                        <option value="Special_When_Lit">Special When Lit</option>
+                    </select>
+
+                    <select id="archive-dropdown" onchange="handleSelection()" class="bg-slate-900 border border-white/10 rounded-xl px-4 py-2 text-xs font-bold uppercase tracking-widest outline-none cursor-pointer min-w-[280px] text-white">
+                        <option value="">Select an Event...</option>
+                    </select>
+                </div>
+            </div>
+        </nav>
+
+        <main class="flex-1 p-6 lg:p-12 overflow-y-auto">
+            <div id="empty-state" class="h-full flex flex-col items-center justify-center text-center py-20">
+                <div class="text-6xl mb-6">🏆</div>
+                <h2 class="text-2xl font-bold mb-2">Archive Explorer</h2>
+                <p class="text-gray-500 max-w-sm">Load historical tournament results to see final standings and awards.</p>
+            </div>
+
+            <div id="archive-content" class="hidden space-y-10 max-w-5xl mx-auto">
+                <div class="text-center">
+                    <div id="comp-label" class="inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-white/10 mb-4">Competition</div>
+                    <h2 id="table-name" class="text-4xl font-black uppercase italic mb-2">Table Name</h2>
+                    
+                    <div class="flex items-center justify-center gap-3">
+                        <p id="event-period" class="text-gray-300 font-bold"></p>
+                        <button id="share-btn" class="bg-white/5 hover:bg-white/10 border border-white/10 rounded-lg px-3 py-1 text-[10px] font-black uppercase tracking-widest transition-all flex items-center gap-2">
+                            <span>🔗</span> <span id="share-btn-text">Share</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="winner-banner"></div>
+                <div id="achievements" class="grid grid-cols-1 md:grid-cols-3 gap-4"></div>
+
+                <div id="summary-card" class="glass rounded-2xl p-6 border-l-4 accent-border flex flex-col md:flex-row justify-around items-center text-center gap-6">
+                    <div>
+                        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Competitors</div>
+                        <div id="total-players" class="text-2xl font-black italic">0</div>
+                    </div>
+                    <div class="hidden md:block w-px h-10 bg-white/10"></div>
+                    <div>
+                        <div class="text-[10px] font-black uppercase tracking-widest text-gray-500 mb-1">Average Score</div>
+                        <div id="avg-score" class="text-2xl font-black italic accent-text">0</div>
+                    </div>
+                </div>
+
+                <div class="glass rounded-3xl overflow-hidden shadow-2xl">
+                    <div class="bg-white/5 px-8 py-4 border-b border-white/10">
+                        <span class="text-xs font-bold uppercase tracking-widest text-gray-400">Final Standings</span>
+                    </div>
+                    <div id="leaderboard" class="divide-y divide-white/5"></div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const AVATAR_BASE = "http://vpinhub.github.io/special-when-lit-leaderboard/img/";
+        let allFiles = [];
+
+        async function init() {
+            try {
+                const response = await fetch('json/list.json');
+                if (!response.ok) throw new Error();
+                allFiles = await response.json();
+                populateArchiveDropdown();
+                
+                const params = new URLSearchParams(window.location.search);
+                const jsonParam = params.get('json');
+                if (jsonParam) {
+                    const targetFile = allFiles.find(f => f.name === jsonParam || f.path.includes(jsonParam));
+                    if (targetFile) {
+                        loadArchiveData(targetFile.path);
+                        // Hide UI elements for shared views
+                        document.getElementById('archive-nav').classList.add('hidden');
+                        document.getElementById('share-btn').classList.add('hidden');
+                    }
+                }
+            } catch (err) {
+                document.getElementById('archive-dropdown').innerHTML = `<option>No Archives Found</option>`;
+            }
+        }
+
+        function populateArchiveDropdown() {
+            const filter = document.getElementById('type-filter').value;
+            const dropdown = document.getElementById('archive-dropdown');
+            const filtered = allFiles.filter(f => filter === 'all' || f.name.startsWith(filter));
+            dropdown.innerHTML = `<option value="">Select a competition record...</option>`;
+            filtered.forEach(f => {
+                const cleanName = f.name.replace('.json', '').replace(/_/g, ' ');
+                const option = document.createElement('option');
+                option.value = f.path;
+                option.textContent = cleanName;
+                dropdown.appendChild(option);
+            });
+        }
+
+        function handleSelection() {
+            const path = document.getElementById('archive-dropdown').value;
+            if (path) {
+                loadArchiveData(path);
+                // Ensure share button is visible when browsing manually
+                document.getElementById('share-btn').classList.remove('hidden');
+            }
+        }
+
+        async function loadArchiveData(filePath) {
+            const res = await fetch(filePath);
+            const data = await res.json();
+            
+            document.getElementById('empty-state').classList.add('hidden');
+            document.getElementById('archive-content').classList.remove('hidden');
+            
+            const isThrowdown = data.competition.includes('Throwdown');
+            document.body.className = isThrowdown ? 'theme-throwdown' : 'theme-swl';
+            
+            document.getElementById('comp-label').innerText = data.competition.replace(/_/g, ' ');
+            document.getElementById('table-name').innerText = data.table;
+            
+            // Format to explicitly show it is pulling the saved date from the JSON
+            document.getElementById('event-period').innerHTML = `<span class="text-[10px] uppercase tracking-widest text-gray-500 mr-2">Archive Date:</span> ${data.period || 'Unknown Dates'}`;
+
+            const players = data.results || [];
+            document.getElementById('total-players').innerText = players.length;
+            const totalScore = players.reduce((sum, p) => sum + (p.high || 0), 0);
+            const avg = players.length > 0 ? Math.round(totalScore / players.length) : 0;
+            document.getElementById('avg-score').innerText = avg.toLocaleString();
+
+            const winner = players[0];
+            document.getElementById('winner-banner').innerHTML = `
+                <div class="glass p-6 rounded-2xl border-2 accent-border flex flex-col md:flex-row items-center justify-between gap-6 shadow-2xl">
+                    <div class="flex items-center gap-6">
+                        <div class="relative">
+                            <img src="${AVATAR_BASE}${winner.name.toLowerCase().replace(/\s+/g, '_')}.gif" class="w-20 h-20 rounded-full border-4 accent-border" onerror="this.src='https://via.placeholder.com/80?text=?'">
+                            <span class="absolute -top-2 -right-2 text-3xl">👑</span>
+                        </div>
+                        <div>
+                            <div class="medieval text-xs accent-text uppercase tracking-widest">Tournament Winner</div>
+                            <div class="text-3xl font-black italic uppercase">${winner.name}</div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <div class="text-xs text-gray-400 font-bold uppercase">Record Score</div>
+                        <div class="text-2xl font-mono font-bold accent-text">${winner.high.toLocaleString()}</div>
+                    </div>
+                </div>`;
+
+            const a = data.awards || {};
+            const card = (icon, title, name, detail, colorClass) => {
+                if (!name) return '';
+                return `<div class="glass p-4 rounded-xl border-l-4 ${colorClass}">
+                    <div class="medieval text-[10px] text-gray-500 uppercase">${icon} ${title}</div>
+                    <div class="font-bold text-sm uppercase italic text-white">${name}</div>
+                    <div class="text-[10px] text-gray-400 mt-1">${detail || ''}</div>
+                </div>`;
+            };
+            
+            const niceName = a.nice_award || players.find(p => p.high.toString().startsWith('69'))?.name;
+
+            // Generate Awards HTML
+            let achHtml = 
+                card("🔫", "Fast Draw", a.fast_draw, a.fast_draw_detail, "card-red") + 
+                card("🎯", "Sharpshooter", a.sharpshooter, a.sharpshooter_detail, "card-orange") + 
+                card("📈", "Most Improved", a.most_improved, a.most_improved_detail, "card-green") + 
+                card("🔄", "Comeback Kid", a.comeback_kid, a.comeback_kid_detail, "card-purple") + 
+                card("🕹️", "Most Played", a.most_played, a.most_played_detail, "card-blue") +
+                card("💰", "Billionaires Club", a.billionaire, a.billionaire_detail, "card-gold") + 
+                card("☢️", "C. Montgomery Burns", a.burns_award, a.burns_award_detail, "card-pink") +
+                card("🥄", "Wooden Spoon", a.wooden_spoon, a.wooden_spoon_detail, "card-stone") +
+                card("🏷️", "Price is Right", a.price_is_right, a.price_is_right_detail, "card-yellow") +
+                card("😏", "69! Nice!", niceName, a.nice_award_detail || "Nice!", "card-pink");
+
+            // Backward Compatibility: Calculate Billionaires Club if not present in JSON
+            if (!a.billionaire) {
+                const billionaires = players.filter(p => p.high >= 1000000000);
+                if (billionaires.length > 0) {
+                    achHtml += card("💰", "Billionaires Club", billionaires.map(p => p.name).join(', '), `${billionaires.length} Total`, "card-gold");
+                }
+            }
+
+            document.getElementById('achievements').innerHTML = achHtml;
+
+            document.getElementById('leaderboard').innerHTML = players.map((p, i) => `
+                <div class="flex items-center justify-between px-8 py-4 hover:bg-white/5 transition">
+                    <div class="flex items-center gap-4">
+                        <span class="w-6 font-black text-xl italic ${i < 3 ? 'accent-text' : 'text-gray-700'}">${i+1}</span>
+                        <img src="${AVATAR_BASE}${p.name.toLowerCase().replace(/\s+/g, '_')}.gif" class="w-10 h-10 rounded-full border border-white/10" onerror="this.src='https://via.placeholder.com/40?text=?'">
+                        <span class="font-bold text-sm text-gray-200">${p.name}</span>
+                    </div>
+                    <span class="font-mono font-bold ${i === 0 ? 'text-yellow-400' : 'text-gray-400'}">${p.high.toLocaleString()}</span>
+                </div>`).join('');
+
+            document.getElementById('share-btn').onclick = function() {
+                const fileName = filePath.split('/').pop();
+                const shareUrl = `${window.location.origin}${window.location.pathname}?json=${fileName}`;
+                navigator.clipboard.writeText(shareUrl).then(() => {
+                    const btnText = document.getElementById('share-btn-text');
+                    const originalText = btnText.innerText;
+                    btnText.innerText = "Copied!";
+                    setTimeout(() => btnText.innerText = originalText, 2000);
+                });
+            };
+        }
+        init();
+    </script>
+</body>
+</html>

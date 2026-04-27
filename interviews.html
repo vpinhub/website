@@ -1,0 +1,512 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPINHUB | Community Interviews</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Encode Sans', sans-serif; background: #020617; color: white; overflow-x: hidden; }
+        .medieval { font-family: 'MedievalSharp', cursive; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .hero-gradient { background: radial-gradient(circle at top, #1e293b 0%, #020617 70%); }
+        
+        /* Card Hover Effects */
+        .interview-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .interview-card:hover { transform: translateY(-5px); border-color: rgba(217, 70, 239, 0.5); background: rgba(255,255,255,0.06); box-shadow: 0 0 25px rgba(217, 70, 239, 0.15); }
+        
+        /* Responsive Video Container */
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; background: #000; border-radius: 0.75rem; }
+        .video-container iframe, .video-container object, .video-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+        /* Dropdown Magic */
+        .nav-dropdown { visibility: hidden; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        .group:hover .nav-dropdown { visibility: visible; opacity: 1; transform: translateY(0); }
+        
+        /* Mobile Menu Transitions */
+        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 800px; opacity: 1; }
+    </style>
+</head>
+<body class="min-h-screen hero-gradient flex flex-col">
+
+        <nav class="glass border-b border-white/10 p-4 md:p-6 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-wrap items-center justify-between gap-4">
+
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hover:opacity-80 transition-opacity">
+                    <h1 class="text-2xl md:text-3xl font-black italic tracking-tighter uppercase leading-none">VPIN<span class="text-orange-500">HUB</span></h1>
+                </a>
+            </div>
+
+            <div class="hidden xl:flex items-center gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors">Join Our Discord</a>
+                <span class="text-white/20">|</span>
+                <a href="competition/" class="text-orange-400 hover:text-orange-300 transition-colors">Competition</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-emerald-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Tutorials <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">GUIDES & TUTORIALS</span>
+                        </div>
+                        <a href="how-to-build-a-vpin-cab.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Build a VPIN Cab</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-update-vpin.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Update VPIN</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-setup-altsound2.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Setup AltSound2</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-play-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Play Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-stream-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Stream Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="vpx-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="fp-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FP Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="fp-aio-update.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP All-in-One</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="interviews.html" class="text-gray-300 hover:text-fuchsia-400 transition-colors">Interviews</a>
+                <span class="text-white/20">|</span>
+                <a href="showcase.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Latest Tables</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-cyan-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Downloads <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full right-0 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">ESSENTIAL SOFTWARE</span>
+                        </div>
+                        <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>PinUp Popper 'Baller'</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>B2S Server Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>Freezy DMDEXT Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FLEX DMD Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>DOF Tool Config V3</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button id="menu-btn" class="xl:hidden bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-white transition-colors font-bold text-sm uppercase tracking-widest">
+                MENU ☰
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="xl:hidden flex flex-col gap-4 mt-4 pt-4 border-t border-white/10 text-xs font-bold uppercase tracking-widest px-2 pb-2">
+            <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join Our Discord</a>
+            <a href="competition/" class="text-orange-400 hover:text-orange-300">Competition</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Tutorials</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="how-to-build-a-vpin-cab.html" class="text-gray-400 hover:text-white text-[10px]">How to Build a VPIN Cab</a>
+                    <a href="how-to-update-vpin.html" class="text-gray-400 hover:text-white text-[10px]">How to Update VPIN</a>
+                    <a href="how-to-setup-altsound2.html" class="text-gray-400 hover:text-white text-[10px]">How to Setup AltSound2</a>
+                    <a href="how-to-play-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Play Pinball</a>
+                    <a href="how-to-stream-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Stream Pinball</a>
+                    <a href="vpx-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">VPX Table Tutorials</a>
+                    <a href="fp-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">FP Table Tutorials</a>
+                    <a href="fp-aio-update.html" class="text-gray-400 hover:text-white text-[10px]">FP All-in-One</a>
+                </div>
+            </div>
+
+            <a href="interviews.html" class="text-fuchsia-400 hover:text-fuchsia-300">Interviews</a>
+            <a href="showcase.html" class="text-cyan-400 hover:text-cyan-300">Latest Tables</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Software Downloads</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="text-gray-400 hover:text-white text-[10px]">PinUp Popper 'Baller'</a>
+                    <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">VPX Latest</a>
+                    <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">B2S Server Latest</a>
+                    <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">Freezy DMDEXT Latest</a>
+                    <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FLEX DMD Latest</a>
+                    <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="text-gray-400 hover:text-white text-[10px]">DOF Tool Config V3</a>
+                    <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FP Latest</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 container mx-auto px-6 py-12 max-w-7xl">
+        
+        <header class="text-center mb-16">
+            <div class="inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest bg-fuchsia-500/20 text-fuchsia-400 mb-4 border border-fuchsia-500/30">
+                Community Spotlights
+            </div>
+            <h2 class="text-4xl md:text-6xl font-black italic uppercase mb-4 text-white">Creator Interviews</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-base leading-relaxed">
+                Welcome to our collection of interviews with some of the amazing members of the Virtual Pinball Community! Get to know the creators behind your favorite virtual tables, media, and hardware.
+            </p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="iaakki">
+                <div>
+                    <div class="h-48 rounded-xl mb-4 border border-white/10 shadow-lg overflow-hidden relative group">
+                        <img src="https://cdn.fastpixel.io/fp/ret_img+v_80d+w_800+h_474+q_lossy+to_webp/vpinhub.com%2Fwp-content%2Fuploads%2F2022%2F09%2Fpinballmaginterview-1.jpg" alt="Iaakki Pinball Mag" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://via.placeholder.com/640x360/0f172a/ffffff?text=Pinball+Mag'">
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Jaska Kangasvieri (Iaakki)</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Pinball Mag sat down with Jaska (aka iaakki), V-Pin Workshop’s co-founder and creator of the hit original VPX table Blood Machines. Check out this awesome interview with one of the GOATs!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://pinballmag.fr/en/iaakkis-interview-v-pin-workshop-co-founder-and-creator-of-blood-machines-vpx/" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Read Article</a>
+                    <a href="https://www.vpinworkshop.com/work/" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPW Releases</a>
+                    <a href="https://vpin-workshop.creator-spring.com/" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Merch</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="sixtoe">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/kxcjLyCAmGo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Sixtoe</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Six toes, one arm, all man. VR guru, Blender battalion leader, and so much more! Find out what just a part of the VPW team works on. VPW Table reveal at the end!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/4516-sixtoe/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                    <a href="https://vpuniverse.com/tipme/4516/" target="_blank" class="bg-white/10 hover:bg-green-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Tip Jar</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="bord">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/k8JK_gkWIT0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Bord</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Learn a little more about this wonderful creator with 4 pages of tables and a flair for Solid State and EM fun. Bord has brought us classics like Jack-bot, PIN-Bot, Flash, Meteor, and Black Knight!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/9265-bord/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                    <a href="https://www.paypal.com/paypalme/pinbord" target="_blank" class="bg-white/10 hover:bg-green-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Tip Jar</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="frenchy">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/ZAEtgbNb1Bw" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Major Frenchy</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        One of the men who brought a lot of us into Virtual Pinball. Founder of the VPC Discord, and tons of great Virtual Pinball Tutorials on youtube.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://www.youtube.com/MajorFrenchy" target="_blank" class="bg-red-600/80 hover:bg-red-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-red-500/50">YouTube</a>
+                    <a href="https://majorfrenchy.ca/" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Website</a>
+                    <a href="https://www.paypal.com/donate/?hosted_button_id=8US8F8HBZUB2Q" target="_blank" class="bg-white/10 hover:bg-green-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Tip Jar</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="remdwaas">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/9F_wZVXUJhA" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Remdwaas</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Creator of VPX originals like Five Nights at Freddy's, Wacky Races, and Ducktales. Find out how he approaches table design, and what might be in store next!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/28048-remdwaas1986/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="lab">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/Z5vKLSSFt_g" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Lab Arcades</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Something a little different! Join Porrgy and Unsavory talking about building vpin cabinets, starting an arcade business, and some tasty vpin creator tidbits.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://labarcades.com/" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Website</a>
+                    <a href="https://twitter.com/labarcades" target="_blank" class="bg-blue-500/80 hover:bg-blue-500 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Twitter</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="fluffhead">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/TzEDB8_FBCg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Fluffhead</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        A distinguished member of Vpin Workshop, and a man who will inform and surprise you! This features Marty doing the normal interview and then going head-to-head for some BattleStream action!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/40692-vpinworkshop/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPW Releases</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="russtyt">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/RNm3AJ4v8Fg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">RusstyT</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        The creator and part of the team behind the sleeper hit new release TimeLord! Find out the inspiring story behind the table and learn more about the incredibly talented minds behind it.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/32300-russtyt/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="pincredibles">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/s2-WTcGUkAY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">The Pincredibles</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        A sit down with Harlan, MPT3K, Daphishbowl, and MrH who joined forces to become The Pincredibles. Creators of Guardians of the Galaxy and Batman 66.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/32679-daphishbowl/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                    <a href="https://www.youtube.com/c/MysteryPinballTheater3000" target="_blank" class="bg-red-600/80 hover:bg-red-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">YouTube</a>
+                    <a href="https://www.twitch.tv/mpt3k" target="_blank" class="bg-purple-600/80 hover:bg-purple-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Twitch</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="paulie">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/x5ZuIhFxSL0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Uncle Paulie</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Good ole' Paulie has brought us some incredible classics. We discuss the creations he has given us already like Comet, Black Knight 2000, Apollo 13, Atlantis, Twister, and more!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/16685-unclepaulie/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="rothbauerw">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/s4wQMZRLu90" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Rothbauerw</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        A sit down with one of the Grandfathers of today's modern VPX play! Meet one of the most prolific VPX collaborators of all time and learn how Nfozzy and Fleep came about.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/10798-rothbauerw/" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="pez">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/XWiYegzjkjc" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Pez (iScored)</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Scoring... The final frontier! Check out this interview with Dan (Pez), the owner and creator of the iScored app which powers the community's tournament leaderboards.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://iscored.info/" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">iScored Website</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="kenji">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/h4O_NdeIBu4" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Kenji</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Learn about the man behind the original creation VooDoos Carnival, and what drove him to develop the table. Kenji (AKA: Kcron666) was kind enough to stop by!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/26293-kcron666/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="classicradios">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/Cop1h0HQw5s" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">ClassicRadios</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Jim Jackson joins us for Pizza Time! Jim has brought you incredible PUPs, and some very interesting side hobbies. We talk Monster Bash, Flintstones, Gilligan's Island, and more.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/18765-classicradios/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                    <a href="https://www.youtube.com/user/wurly1100" target="_blank" class="bg-red-600/80 hover:bg-red-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">YouTube</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="kate">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/Y6gxO9e5zEU" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Kate Rothwell-Jackson</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        A special show with Kate Rothwell-Jackson, the lead voice over artist on the Game of Thrones Stern pinball game. We play the VPX re-creation and talk about her adventures.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="hirez">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/GhGPOIvs4Eg" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">HIREZ</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        In this creator interview Marty sits down with the master of EM Mods, media, and so much more, HiRez00! Join us on a very comprehensive journey through his work and life.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/19941-hirez00/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                    <a href="https://www.youtube.com/@HiRezDesigns" target="_blank" class="bg-red-600/80 hover:bg-red-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">YouTube</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="merlin">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/lGhpzjX5V7k" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">MerlinRTP</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Join Marty as he delves into the creative mind of a newer VPX developer, MerlinRTP! Not only do we talk Thundercats, but design choice, other projects, and more.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/49555-merlinrtp/" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPUniverse</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="phil">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/5o9JJNKM9HM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Cleveland Software Design</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Join Marty as he delves into the creative mind of a man who wants to make it easier for you to get into Virtual Pinball. Phil from Cleveland Software Design joins us for chat!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://www.clevelandsoftwaredesign.com/" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Hardware Store</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="apophis">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/CZWRjBwqixM" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Apophis</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Check out Major Frenchy's first interview with Apophis! Very involved in the VP community, Apophis talks about the VPW team and the absolute newest VPX table technology.
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://vpuniverse.com/profile/40692-vpinworkshop/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-white/10 hover:bg-fuchsia-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPW Releases</a>
+                    <a href="https://www.vpinworkshop.com/" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">VPW Site</a>
+                </div>
+            </article>
+
+            <article class="interview-card glass rounded-2xl p-6 border-t-4 border-fuchsia-500 flex flex-col justify-between" id="marty">
+                <div>
+                    <div class="video-container mb-4 border border-white/10 shadow-lg">
+                        <iframe src="https://www.youtube.com/embed/dicDk9fon2U" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Smaug (GCC)</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed mb-6">
+                        Major Frenchy conducts a reverse interview, as Marty interviewed MF last year. Marty talks about his passion and projects in the world of virtual pinball!
+                    </p>
+                </div>
+                <div class="mt-auto pt-4 border-t border-white/5 flex flex-wrap gap-2">
+                    <a href="https://www.twitch.tv/gameclubcentral" target="_blank" class="bg-purple-600/80 hover:bg-purple-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">Twitch</a>
+                    <a href="https://www.youtube.com/@vpinhub" target="_blank" class="bg-red-600/80 hover:bg-red-600 text-white font-bold uppercase text-[9px] tracking-widest px-3 py-2 rounded-md transition-colors border border-white/10">YouTube</a>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <footer class="bg-black/40 border-t border-white/5 py-8 mt-auto">
+        <div class="container mx-auto px-6 text-center flex justify-center items-center gap-4">
+            <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest">
+                © VPINHUB.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+            } else {
+                mobileMenu.classList.add('open');
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,392 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FP Table Tutorials | VPINHUB</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Encode Sans', sans-serif; background: #020617; color: white; transition: background 0.5s ease; overflow-x: hidden; }
+        .medieval { font-family: 'MedievalSharp', cursive; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .hero-gradient { background: radial-gradient(circle at top, #1e293b 0%, #020617 70%); }
+        
+        .hub-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hub-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
+        
+        .glow-orange { box-shadow: 0 0 20px rgba(249, 115, 22, 0.15); }
+        .glow-fuchsia { box-shadow: 0 0 20px rgba(217, 70, 239, 0.15); }
+        .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+        .glow-amber { box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
+        .glow-cyan { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
+
+        /* Dropdown Magic */
+        .nav-dropdown { visibility: hidden; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        .group:hover .nav-dropdown { visibility: visible; opacity: 1; transform: translateY(0); }
+        
+        /* Mobile Menu Transitions */
+        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 1000px; opacity: 1; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col hero-gradient">
+
+        <nav class="glass border-b border-white/10 p-4 md:p-6 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-wrap items-center justify-between gap-4">
+
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hover:opacity-80 transition-opacity">
+                    <h1 class="text-2xl md:text-3xl font-black italic tracking-tighter uppercase leading-none">VPIN<span class="text-orange-500">HUB</span></h1>
+                </a>
+            </div>
+
+            <div class="hidden xl:flex items-center gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors">Join Our Discord</a>
+                <span class="text-white/20">|</span>
+                <a href="competition/" class="text-orange-400 hover:text-orange-300 transition-colors">Competition</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-emerald-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Tutorials <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">GUIDES & TUTORIALS</span>
+                        </div>
+                        <a href="how-to-build-a-vpin-cab.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Build a VPIN Cab</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-update-vpin.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Update VPIN</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-setup-altsound2.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Setup AltSound2</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-play-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Play Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-stream-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Stream Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="vpx-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="fp-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FP Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="fp-aio-update.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP All-in-One</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="interviews.html" class="text-gray-300 hover:text-fuchsia-400 transition-colors">Interviews</a>
+                <span class="text-white/20">|</span>
+                <a href="showcase.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Latest Tables</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-cyan-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Downloads <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full right-0 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">ESSENTIAL SOFTWARE</span>
+                        </div>
+                        <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>PinUp Popper 'Baller'</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>B2S Server Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>Freezy DMDEXT Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FLEX DMD Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>DOF Tool Config V3</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button id="menu-btn" class="xl:hidden bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-white transition-colors font-bold text-sm uppercase tracking-widest">
+                MENU ☰
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="xl:hidden flex flex-col gap-4 mt-4 pt-4 border-t border-white/10 text-xs font-bold uppercase tracking-widest px-2 pb-2">
+            <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join Our Discord</a>
+            <a href="competition/" class="text-orange-400 hover:text-orange-300">Competition</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Tutorials</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="how-to-build-a-vpin-cab.html" class="text-gray-400 hover:text-white text-[10px]">How to Build a VPIN Cab</a>
+                    <a href="how-to-update-vpin.html" class="text-gray-400 hover:text-white text-[10px]">How to Update VPIN</a>
+                    <a href="how-to-setup-altsound2.html" class="text-gray-400 hover:text-white text-[10px]">How to Setup AltSound2</a>
+                    <a href="how-to-play-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Play Pinball</a>
+                    <a href="how-to-stream-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Stream Pinball</a>
+                    <a href="vpx-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">VPX Table Tutorials</a>
+                    <a href="fp-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">FP Table Tutorials</a>
+                    <a href="fp-aio-update.html" class="text-gray-400 hover:text-white text-[10px]">FP All-in-One</a>
+                </div>
+            </div>
+
+            <a href="interviews.html" class="text-fuchsia-400 hover:text-fuchsia-300">Interviews</a>
+            <a href="showcase.html" class="text-cyan-400 hover:text-cyan-300">Latest Tables</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Software Downloads</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="text-gray-400 hover:text-white text-[10px]">PinUp Popper 'Baller'</a>
+                    <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">VPX Latest</a>
+                    <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">B2S Server Latest</a>
+                    <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">Freezy DMDEXT Latest</a>
+                    <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FLEX DMD Latest</a>
+                    <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="text-gray-400 hover:text-white text-[10px]">DOF Tool Config V3</a>
+                    <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FP Latest</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 container mx-auto px-6 py-12 max-w-7xl">
+        
+        <div class="mb-16">
+            <h2 class="text-5xl md:text-6xl font-black italic uppercase text-white mb-2">Future Pinball Tables</h2>
+            <p class="text-emerald-400 font-bold tracking-widest uppercase text-lg mb-8">Featuring Terry Red</p>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <div class="glass p-6 md:p-8 rounded-2xl border-l-4 border-emerald-500 text-gray-300 text-sm md:text-base leading-relaxed h-full flex flex-col justify-center">
+                    <p class="mb-4">The amazing Terry Red continues to breathe new life into Future Pinball! Always giving proper credit to the original table authors, Terry adds his magic to each table he touches. From adding BAM Edition, to PinEvent V2, and now the FizX Mod. The results are excellent tables that play great with modern dynamic lighting, shadowmaps, ray cast shadows, and full cabinet support.</p>
+                    <p class="mb-6">On top of that, Terry never leaves you on your own to figure out how to get his FP tables up and running, his step by step video and written guides are some of the best out there! Learn how to play some of our favorite Terry's tables below.</p>
+                    
+                    <div class="flex flex-wrap gap-4 mt-auto">
+                        <a href="https://vpuniverse.com/profile/10155-terryred/?tab=node_filestabprofile_filesTab" target="_blank" class="bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold uppercase tracking-widest text-[10px] px-6 py-3 rounded-full transition-colors shadow-[0_0_15px_rgba(6,182,212,0.3)]">
+                            View Terry's Releases
+                        </a>
+                        <a href="https://www.paypal.com/paypalme/TerrenceHagerty" target="_blank" class="bg-white/10 hover:bg-white/20 text-white font-bold uppercase tracking-widest text-[10px] px-6 py-3 rounded-full transition-colors border border-white/10">
+                            Support / Tip Terry Red
+                        </a>
+                    </div>
+                </div>
+
+                <div class="glass p-4 rounded-2xl shadow-lg border border-white/5 glow-cyan h-full">
+                    <div class="aspect-w-16 aspect-h-9 w-full h-full">
+                        <iframe src="https://www.youtube.com/embed?listType=user_uploads&list=terryred" frameborder="0" allowfullscreen class="rounded-xl w-full h-full min-h-[300px]"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mb-12 pt-8 border-t border-white/5">
+            <h3 class="text-3xl md:text-4xl font-black uppercase italic text-white mb-10 text-center">Table Showcases & Tutorials</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/EWDr9j331Bk?si=-0R0T01gsLERY4F4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Aliens Legacy - "Game Over, Man"</h4>
+                        <a href="https://vpuniverse.com/files/file/15148-aliens-legacy-game-over-man-pinevent-lite-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/M74ATy1TCLU?si=dW8Rmvz22HGTSCh7" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Blade Runner - Replicant Edition</h4>
+                        <a href="https://vpuniverse.com/files/file/15041-blade-runner-replicant-edition-pinevent-lite-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/smvv3LvituQ?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Blue vs Pink - BAM Edition</h4>
+                        <a href="https://vpuniverse.com/files/file/8521-blue-vs-pink-bam-edition-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/TmpR8ffEW-w?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">F-14 Tomcat - Afterburner</h4>
+                        <a href="https://vpuniverse.com/files/file/6088-f-14-tomcat-afterburner-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/Ml08ap0zvO8?start=20&feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Halloween - Big Bloody Mike</h4>
+                        <a href="https://vpuniverse.com/files/file/6091-halloween-big-bloody-mike-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/P2ojUreOmXs?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Indiana Jones - Fortune and Glory</h4>
+                        <a href="https://vpuniverse.com/files/file/14879-indiana-jones-fortune-and-glory-edition-pinevent-lite-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/OCOqLARj18E?start=2&feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">JAWS - Bigger Boat Edition</h4>
+                        <a href="https://vpuniverse.com/files/file/11881-jaws-bigger-boat-edition-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/UxQ3tey_KwY?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Junkyard Cats - BAM Edition</h4>
+                        <a href="https://vpuniverse.com/files/file/8525-junkyard-cats-bam-edition-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/k1KgPYwJZGQ?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Masters of the Universe - Collector's Edition</h4>
+                        <a href="https://vpuniverse.com/files/file/22783-masters-of-the-universe-collectors-edition-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/An7bYxvbQkY?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">RoboCop - Dead or Alive Edition</h4>
+                        <a href="https://vpuniverse.com/files/file/14985-robocop-dead-or-alive-edition-pinevent-lite-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/-ITAvJDBIO8?start=5&feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">RetroFlair - BAM Edition</h4>
+                        <a href="https://vpuniverse.com/files/file/6061-retroflair-bam-edition-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/QICv4MiGCHU?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Sonic Pinball Mania</h4>
+                        <a href="https://vpuniverse.com/files/file/9345-sonic-pinball-mania-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hub-card glass p-5 rounded-2xl flex flex-col h-full border-t border-white/5 group">
+                    <div class="aspect-w-16 aspect-h-9 w-full mb-4">
+                        <iframe src="https://www.youtube.com/embed/_SrgC11dJRw?start=16&feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen class="rounded-xl w-full aspect-video"></iframe>
+                    </div>
+                    <div class="mt-auto">
+                        <h4 class="text-lg font-black text-white uppercase italic leading-tight mb-4">Star Wars: Death Star Assault - GALACTIC EDITION</h4>
+                        <a href="https://vpuniverse.com/files/file/6061-retroflair-bam-edition-pinevent-v2-fizx-33/" target="_blank" class="text-xs font-bold tracking-widest uppercase text-emerald-400 hover:text-emerald-300 flex items-center justify-between border-t border-white/10 pt-3 transition-colors">
+                            <span>Download Table</span>
+                            <span class="text-lg leading-none">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-black/40 border-t border-white/5 py-8 mt-auto">
+        <div class="container mx-auto px-6 text-center flex justify-center items-center gap-4">
+            <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest">
+                © VPINHUB.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+            } else {
+                mobileMenu.classList.add('open');
+            }
+        });
+    </script>
+</body>
+</html>

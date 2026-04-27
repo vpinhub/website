@@ -1,0 +1,262 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPINHUB | Virtual Pinball Headquarters</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Encode Sans', sans-serif; background: #020617; color: white; transition: background 0.5s ease; overflow-x: hidden; }
+        .medieval { font-family: 'MedievalSharp', cursive; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .hero-gradient { background: radial-gradient(circle at top, #1e293b 0%, #020617 70%); }
+        
+        .hub-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hub-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
+        
+        .glow-orange { box-shadow: 0 0 20px rgba(249, 115, 22, 0.15); }
+        .glow-fuchsia { box-shadow: 0 0 20px rgba(217, 70, 239, 0.15); }
+        .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+        .glow-amber { box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
+        .glow-cyan { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
+
+        /* Dropdown Magic */
+        .nav-dropdown { visibility: hidden; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        .group:hover .nav-dropdown { visibility: visible; opacity: 1; transform: translateY(0); }
+        
+        /* Mobile Menu Transitions */
+        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 1000px; opacity: 1; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col hero-gradient">
+
+        <nav class="glass border-b border-white/10 p-4 md:p-6 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-wrap items-center justify-between gap-4">
+
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="hover:opacity-80 transition-opacity">
+                    <h1 class="text-2xl md:text-3xl font-black italic tracking-tighter uppercase leading-none">VPIN<span class="text-orange-500">HUB</span></h1>
+                </a>
+            </div>
+
+            <div class="hidden xl:flex items-center gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors">Join Our Discord</a>
+                <span class="text-white/20">|</span>
+                <a href="competition/" class="text-orange-400 hover:text-orange-300 transition-colors">Competition</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-emerald-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Tutorials <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">GUIDES & TUTORIALS</span>
+                        </div>
+                        <a href="how-to-build-a-vpin-cab.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Build a VPIN Cab</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-update-vpin.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Update VPIN</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-setup-altsound2.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Setup AltSound2</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-play-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Play Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-stream-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Stream Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="vpx-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="fp-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FP Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="fp-aio-update.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP All-in-One</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="interviews.html" class="text-gray-300 hover:text-fuchsia-400 transition-colors">Interviews</a>
+                <span class="text-white/20">|</span>
+                <a href="showcase.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Latest Tables</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-cyan-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Downloads <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full right-0 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">ESSENTIAL SOFTWARE</span>
+                        </div>
+                        <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>PinUp Popper 'Baller'</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>B2S Server Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>Freezy DMDEXT Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FLEX DMD Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>DOF Tool Config V3</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button id="menu-btn" class="xl:hidden bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-white transition-colors font-bold text-sm uppercase tracking-widest">
+                MENU ☰
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="xl:hidden flex flex-col gap-4 mt-4 pt-4 border-t border-white/10 text-xs font-bold uppercase tracking-widest px-2 pb-2">
+            <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join Our Discord</a>
+            <a href="competition/" class="text-orange-400 hover:text-orange-300">Competition</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Tutorials</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="how-to-build-a-vpin-cab.html" class="text-gray-400 hover:text-white text-[10px]">How to Build a VPIN Cab</a>
+                    <a href="how-to-update-vpin.html" class="text-gray-400 hover:text-white text-[10px]">How to Update VPIN</a>
+                    <a href="how-to-setup-altsound2.html" class="text-gray-400 hover:text-white text-[10px]">How to Setup AltSound2</a>
+                    <a href="how-to-play-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Play Pinball</a>
+                    <a href="how-to-stream-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Stream Pinball</a>
+                    <a href="vpx-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">VPX Table Tutorials</a>
+                    <a href="fp-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">FP Table Tutorials</a>
+                    <a href="fp-aio-update.html" class="text-gray-400 hover:text-white text-[10px]">FP All-in-One</a>
+                </div>
+            </div>
+
+            <a href="interviews.html" class="text-fuchsia-400 hover:text-fuchsia-300">Interviews</a>
+            <a href="showcase.html" class="text-cyan-400 hover:text-cyan-300">Latest Tables</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Software Downloads</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="text-gray-400 hover:text-white text-[10px]">PinUp Popper 'Baller'</a>
+                    <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">VPX Latest</a>
+                    <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">B2S Server Latest</a>
+                    <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">Freezy DMDEXT Latest</a>
+                    <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FLEX DMD Latest</a>
+                    <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="text-gray-400 hover:text-white text-[10px]">DOF Tool Config V3</a>
+                    <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FP Latest</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-1 container mx-auto px-6 py-12 max-w-6xl">
+        
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-4 text-white">Welcome to the Hub</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto text-sm leading-relaxed">
+                Your portal for weekly virtual pinball tournaments, table showcases, creator interviews, and essential community resources.
+            </p>
+
+            <form action="showcase.html" method="GET" class="relative w-full max-w-2xl mx-auto mt-8">
+                <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+                <input type="text" name="q" placeholder="Search tables, authors, or features..." required
+                       class="w-full glass bg-white/5 text-white placeholder-gray-500 border border-white/10 rounded-full py-4 pl-14 pr-32 focus:outline-none focus:border-cyan-500 focus:bg-white/10 transition-all shadow-[0_4px_10px_rgba(0,0,0,0.3)] focus:shadow-[0_0_20px_rgba(6,182,212,0.25)]">
+                <button type="submit" class="absolute inset-y-2 right-2 bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold uppercase tracking-widest text-[10px] md:text-xs px-6 rounded-full transition-all hover:scale-105 shadow-md">
+                    Search
+                </button>
+            </form>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            <a href="competition/" class="hub-card glass rounded-2xl p-6 border-l-4 border-orange-500 glow-orange flex flex-col justify-between">
+                <div>
+                    <div class="text-3xl mb-4">🏆</div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Active Events</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Enter Special When Lit, Thursday Throwdown, and VPC Competition Corner.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/5 text-orange-500 font-bold uppercase text-[10px] tracking-widest flex justify-between">
+                    <span>View Competitions</span><span>→</span>
+                </div>
+            </a>
+
+            <a href="how-to-build-a-vpin-cab.html" class="hub-card glass rounded-2xl p-6 border-l-4 border-emerald-500 glow-emerald flex flex-col justify-between">
+                <div>
+                    <div class="text-3xl mb-4">🛠️</div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Getting Started</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Start your journey here. Learn how to build your own Virtual Pinball Cabinet and configure your setup.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/5 text-emerald-400 font-bold uppercase text-[10px] tracking-widest flex justify-between">
+                    <span>View Guides</span><span>→</span>
+                </div>
+            </a>
+
+            <a href="competition/past-competitions.html" class="hub-card glass rounded-2xl p-6 border-l-4 border-indigo-500 glow-indigo flex flex-col justify-between">
+                <div>
+                    <div class="text-3xl mb-4">📜</div>
+                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Hall of Fame</h3>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Look back at historical leaderboards, past champions, and legacy achievements.
+                    </p>
+                </div>
+                <div class="mt-6 pt-4 border-t border-white/5 text-indigo-400 font-bold uppercase text-[10px] tracking-widest flex justify-between">
+                    <span>View Archives</span><span>→</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="glass p-8 md:p-12 rounded-3xl border border-indigo-500/30 bg-indigo-900/10 text-center glow-indigo mb-8 relative overflow-hidden">
+            <div class="absolute inset-0 bg-white/5 opacity-10 pointer-events-none"></div>
+            <div class="relative z-10">
+                <h3 class="text-3xl md:text-4xl font-black uppercase italic text-white mb-4">Join the Conversation</h3>
+                <p class="text-gray-300 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
+                    Whether you're building your first cabinet, looking for troubleshooting help, organizing events, or just want to discuss the latest VPX releases—our community is the place to be!
+                </p>
+                <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="inline-flex items-center gap-3 bg-indigo-500 hover:bg-indigo-400 text-white font-black uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
+                    <span class="text-xl">💬</span> Join our Discord
+                </a>
+            </div>
+        </div>
+
+    </main>
+
+    <footer class="bg-black/40 border-t border-white/5 py-8 mt-auto">
+        <div class="container mx-auto px-6 text-center flex justify-center items-center gap-4">
+            <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest">
+                © VPINHUB.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+            } else {
+                mobileMenu.classList.add('open');
+            }
+        });
+    </script>
+</body>
+</html>
