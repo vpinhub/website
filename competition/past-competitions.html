@@ -113,13 +113,14 @@
 
     <script>
         const AVATAR_BASE = "https://vpinhub.github.io/special-when-lit-leaderboard/img/";
+        const COMPETITION_BASE = "https://vpinhub.github.io/competitioncentral/";
         let allFiles = [];
 
         async function init() {
             try {
-                const response = await fetch('json/list.json');
+                const response = await fetch('https://vpinhub.github.io/competitioncentral/json/list.json');
                 if (!response.ok) throw new Error();
-                allFiles = await response.json();
+                allFiles = (await response.json()).map(f => ({ ...f, path: COMPETITION_BASE + f.path }));
                 populateArchiveDropdown();
                 
                 const params = new URLSearchParams(window.location.search);

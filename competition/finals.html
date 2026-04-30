@@ -125,6 +125,7 @@
 
 <script>
 const AVATAR_BASE = "https://vpinhub.github.io/special-when-lit-leaderboard/img/";
+const COMPETITION_BASE = "https://vpinhub.github.io/competitioncentral/";
 const el = id => document.getElementById(id);
 
 window.onload = function() {
@@ -142,7 +143,7 @@ window.onload = function() {
 
 async function populateSelector() {
     try {
-        const res = await fetch('json/list.json');
+        const res = await fetch(COMPETITION_BASE + 'json/list.json');
         const files = await res.json();
         el('json-list').innerHTML = files.reverse().map(f => `<option value="${f.name}">${f.name.replace('.json','').replace(/_/g,' ')}</option>`).join('');
     } catch(e) { console.error(e); }
@@ -157,7 +158,7 @@ function launchNewTab() {
 }
 
 async function loadData(file, animate=false){
-    const res = await fetch(`json/${file}`);
+    const res = await fetch(COMPETITION_BASE + `json/${file}`);
     const data = await res.json();
     document.body.className = data.competition?.includes('Throwdown') ? 'theme-throwdown' : 'theme-swl';
     el('main-stage').classList.remove('hidden');
@@ -276,7 +277,7 @@ async function copyDiscordTemplate(btn) {
     const file = el('json-list').value;
     if(!file) return;
     try {
-        const res = await fetch(`json/${file}`);
+        const res = await fetch(COMPETITION_BASE + `json/${file}`);
         const d = await res.json();
         const a = d.awards || {};
         
