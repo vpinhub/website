@@ -66,6 +66,7 @@
     <script>
         const VPS_DATA = "https://raw.githubusercontent.com/VirtualPinballSpreadsheet/vps-db/main/db/vpsdb.json";
         const VPC_API = 'https://virtualpinballchat.com/vpc/api/v1/currentWeek?channelName=competition-corner';
+        const PROXY = "https://api.allorigins.win/raw?url=";
         let vpsDB = [];
         window.achievementData = {};
 
@@ -75,7 +76,8 @@
             if (urlParams.has('showachievements')) { document.getElementById('achievement-zone').classList.remove('hidden'); }
             try {
                 const dbRes = await fetch(VPS_DATA); vpsDB = await dbRes.json();
-                const response = await fetch(VPC_API);
+                let response;
+                try { response = await fetch(VPC_API); if (!response.ok) throw new Error(); } catch { response = await fetch(PROXY + encodeURIComponent(VPC_API)); }
                 const currentWeek = await response.json();
                 if (currentWeek) processVPCData(currentWeek);
                 if (urlParams.has('savejson')) { setTimeout(() => exportTournamentData('Competition_Corner'), 2000); }

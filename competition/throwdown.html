@@ -59,10 +59,11 @@
         </div>
     </main>
     <script>
-        const AVATAR_BASE = "http://vpinhub.github.io/special-when-lit-leaderboard/img/";
+        const AVATAR_BASE = "https://vpinhub.github.io/special-when-lit-leaderboard/img/";
         const ROOM_ID = "700";
         const PRIMARY_API = `https://virtualpinballchat.com/vpc/api/v1/iscored?roomId=${ROOM_ID}`;
         const VPS_DATA = "https://raw.githubusercontent.com/VirtualPinballSpreadsheet/vps-db/main/db/vpsdb.json";
+        const PROXY = "https://api.allorigins.win/raw?url=";
         let vpsDB = [];
         window.achievementData = {};
         window.compOverride = null;
@@ -80,7 +81,8 @@
                 } catch(e) { console.log("No override.json found or invalid format."); }
 
                 const dbRes = await fetch(VPS_DATA); vpsDB = await dbRes.json();
-                const scoreRes = await fetch(PRIMARY_API);
+                let scoreRes;
+                try { scoreRes = await fetch(PRIMARY_API); if (!scoreRes.ok) throw new Error(); } catch { scoreRes = await fetch(PROXY + encodeURIComponent(PRIMARY_API)); }
                 const scoreData = await scoreRes.json();
                 if (scoreData) {
                     processTournament(scoreData);
