@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -142,7 +142,7 @@
 </main>
 
 <script>
-const AVATAR_BASE = "http://vpinhub.github.io/special-when-lit-leaderboard/img/";
+const AVATAR_BASE = "https://vpinhub.github.io/special-when-lit-leaderboard/img/";
 const PROXY = "https://api.allorigins.win/raw?url=";
 const VPS_DATA = "https://raw.githubusercontent.com/VirtualPinballSpreadsheet/vps-db/main/db/vpsdb.json";
 let vpsDB = [];
@@ -186,8 +186,14 @@ function renderPreview(targetId, tableName, leader, colorClass, avatarUrl, playe
 async function fetchIScoredPreview(roomId, targetId, colorClass, overrideKey) {
     const url = `https://virtualpinballchat.com/vpc/api/v1/iscored?roomId=${roomId}`;
     try {
-        let r = await fetch(url);
-        if (!r.ok) r = await fetch(PROXY + encodeURIComponent(url));
+        let r;
+        try {
+            r = await fetch(url);
+            if (!r.ok) throw new Error("Direct fetch failed");
+        } catch (e) {
+            r = await fetch(PROXY + encodeURIComponent(url));
+        }
+        
         const data = await r.json();
         const game = data.find(g => JSON.stringify(g).includes('game=')) || data[0];
         const uniquePlayers = new Set((game.scores || []).map(s => s.name)).size;
@@ -213,8 +219,14 @@ async function fetchIScoredPreview(roomId, targetId, colorClass, overrideKey) {
 async function fetchVPCPreview() {
     const url = 'https://virtualpinballchat.com/vpc/api/v1/currentWeek?channelName=competition-corner';
     try {
-        let r = await fetch(url);
-        if (!r.ok) r = await fetch(PROXY + encodeURIComponent(url));
+        let r;
+        try {
+            r = await fetch(url);
+            if (!r.ok) throw new Error("Direct fetch failed");
+        } catch (e) {
+            r = await fetch(PROXY + encodeURIComponent(url));
+        }
+        
         const data = await r.json();
         const uniquePlayers = new Set((data.scores || []).map(s => s.username)).size;
         let tableName = data.table;
