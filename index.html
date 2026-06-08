@@ -3,263 +3,1211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VPINHUB | Virtual Pinball Headquarters</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <title>VPINHUB Golden Tee Ballers - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Encode Sans', sans-serif; background: #020617; color: white; transition: background 0.5s ease; overflow-x: hidden; }
-        .medieval { font-family: 'MedievalSharp', cursive; }
-        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
-        .hero-gradient { background: radial-gradient(circle at top, #1e293b 0%, #020617 70%); }
-        
-        .hub-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .hub-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
-        
-        .glow-orange { box-shadow: 0 0 20px rgba(249, 115, 22, 0.15); }
-        .glow-fuchsia { box-shadow: 0 0 20px rgba(217, 70, 239, 0.15); }
-        .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
-        .glow-amber { box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
-        .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
-        .glow-cyan { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-orange: #FF6B00;
+            --dark-orange: #CC5500;
+            --black: #000000;
+            --dark-gray: #1a1a1a;
+            --medium-gray: #2a2a2a;
+            --light-gray: #3a3a3a;
+            --text-gray: #cccccc;
+            --score-under: #22c55e;
+            --score-over: #ef4444;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--black);
+            color: var(--text-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            color: #ffffff;
+        }
 
-        /* Dropdown Magic */
-        .nav-dropdown { visibility: hidden; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
-        .group:hover .nav-dropdown { visibility: visible; opacity: 1; transform: translateY(0); }
-        
-        /* Mobile Menu Transitions */
-        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
-        #mobile-menu.open { max-height: 1000px; opacity: 1; }
+        /* ── Navigation ── */
+        .navbar {
+            background: linear-gradient(180deg, var(--dark-gray) 0%, var(--black) 100%);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-orange);
+        }
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.8em;
+            font-weight: 700;
+            color: var(--primary-orange);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo span { color: #ffffff; }
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        .nav-menu a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-menu a:hover, .nav-menu a.active { color: var(--primary-orange); }
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: width 0.3s;
+        }
+        .nav-menu a:hover::after, .nav-menu a.active::after { width: 100%; }
+
+        /* Hamburger */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--primary-orange);
+            transition: all 0.3s;
+        }
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        /* ── Hero ── */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-gray) 0%, var(--black) 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 3px solid var(--primary-orange);
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '🏌️';
+            position: absolute;
+            font-size: 15em;
+            opacity: 0.03;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        .hero .highlight { color: var(--primary-orange); }
+        .hero p { font-size: 1.3em; margin-bottom: 2rem; }
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--primary-orange);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: 2px solid var(--primary-orange);
+        }
+        .btn:hover { background: transparent; color: var(--primary-orange); }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--primary-orange);
+            color: var(--primary-orange);
+        }
+        .btn-secondary:hover { background: var(--primary-orange); color: #ffffff; }
+
+        /* ── Container & Sections ── */
+        .container { max-width: 1400px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 4rem 0; }
+        .section-alt { background: var(--dark-gray); }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-header h2 {
+            font-size: 2.5em;
+            margin-bottom: 0.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--primary-orange);
+        }
+        .section-header p { font-size: 1.1em; color: var(--text-gray); margin-top: 0.5rem; }
+
+        /* ── Spotlight ── */
+        .spotlight {
+            background: var(--dark-gray);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 2px solid var(--light-gray);
+        }
+        .spotlight h3 {
+            font-size: 2em;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            color: var(--primary-orange);
+        }
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto 1rem;
+            padding-bottom: 56.25%;
+            height: 0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+        }
+        .spotlight-info { text-align: center; padding: 1rem; }
+        .spotlight-info .player-name {
+            font-size: 1.5em;
+            color: var(--primary-orange);
+            font-weight: 600;
+        }
+
+        /* ── Leaderboard / Tabs ── */
+        .leaderboard-preview {
+            background: var(--dark-gray);
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--light-gray);
+        }
+        .tabs-wrapper { position: relative; }
+        .tabs-wrapper::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 0; bottom: 0;
+            width: 60px;
+            background: linear-gradient(to right, transparent, var(--medium-gray));
+            pointer-events: none;
+        }
+        .game-tabs {
+            display: flex;
+            background: var(--medium-gray);
+            border-bottom: 2px solid var(--primary-orange);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .game-tabs::-webkit-scrollbar { display: none; }
+        .tab {
+            padding: 1rem 2rem;
+            background: transparent;
+            border: none;
+            color: var(--text-gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            white-space: nowrap;
+            border-bottom: 3px solid transparent;
+        }
+        .tab:hover { background: var(--light-gray); }
+        .tab.active {
+            background: var(--light-gray);
+            color: var(--primary-orange);
+            border-bottom-color: var(--primary-orange);
+        }
+        .leaderboard-content { padding: 2rem; }
+        table { width: 100%; border-collapse: collapse; }
+        thead { background: var(--medium-gray); }
+        th {
+            padding: 1rem;
+            text-align: left;
+            color: var(--primary-orange);
+            font-weight: 600;
+            border-bottom: 2px solid var(--primary-orange);
+        }
+        td { padding: 1rem; border-bottom: 1px solid var(--light-gray); }
+        tbody tr { transition: background 0.3s; cursor: pointer; }
+        tbody tr:hover { background: var(--medium-gray); }
+        .rank { font-weight: 700; font-size: 1.2em; }
+        .rank-1 { color: #FFD700; }
+        .rank-2 { color: #C0C0C0; }
+        .rank-3 { color: #CD7F32; }
+        .player-name { font-weight: 600; color: #ffffff; }
+        .score-highlight { color: var(--primary-orange); font-weight: 700; font-size: 1.1em; }
+        .score-under { color: var(--score-under); font-weight: 700; font-size: 1.1em; }
+        .score-over  { color: var(--score-over);  font-weight: 700; font-size: 1.1em; }
+        .video-icon { color: var(--primary-orange); font-size: 1.2em; }
+
+        /* ── Player Cards ── */
+        .player-card {
+            background: var(--dark-gray);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 2px solid var(--light-gray);
+            transition: border-color 0.3s;
+        }
+        .player-card:hover { border-color: var(--primary-orange); }
+        .player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--light-gray);
+        }
+        .player-rank { font-size: 3em; font-weight: 700; min-width: 80px; }
+        .player-details { flex: 1; margin-left: 2rem; }
+        .player-details h3 { font-size: 2em; margin-bottom: 0.5rem; }
+        .player-stats { display: flex; gap: 2rem; color: var(--text-gray); flex-wrap: wrap; }
+        .scorecard-video-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+        .scorecard-compact { overflow-x: auto; }
+        .scorecard-compact table { font-size: 0.9em; }
+
+        /* ── Stats Grid ── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .stat-card {
+            background: var(--dark-gray);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid var(--light-gray);
+            transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
+        }
+        .stat-card:hover { transform: translateY(-5px); border-color: var(--primary-orange); }
+        .stat-card .stat-number { font-size: 3em; color: var(--primary-orange); font-weight: 700; display: block; }
+        .stat-card .stat-label { font-size: 1.1em; color: var(--text-gray); margin-top: 0.5rem; }
+
+        /* ── Weekly countdown badge ── */
+        .countdown-badge {
+            display: inline-block;
+            background: var(--primary-orange);
+            color: #fff;
+            font-weight: 700;
+            font-size: 0.85em;
+            padding: 3px 12px;
+            border-radius: 20px;
+            margin-top: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+        .countdown-badge.urgent { background: var(--score-over); }
+
+        /* ── Video Card Grid ── */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 1.5rem;
+        }
+        .video-card {
+            background: var(--medium-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid var(--light-gray);
+            transition: border-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+        .video-card:hover { border-color: var(--primary-orange); transform: translateY(-4px); }
+        .video-thumbnail-wrapper { position: relative; }
+        .video-thumbnail-wrapper img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            display: block;
+        }
+        .video-rank-badge {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(0,0,0,0.82);
+            border-radius: 4px;
+            padding: 2px 9px;
+            font-weight: 700;
+            font-size: 0.85em;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        .play-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.28);
+            opacity: 0;
+            transition: opacity 0.2s;
+            font-size: 3em;
+        }
+        .video-card:hover .play-overlay { opacity: 1; }
+        .video-card-info { padding: 0.75rem 1rem 1rem; }
+        .video-card-info .vc-player { font-weight: 600; color: #fff; font-size: 1em; }
+        .video-card-info .vc-course { font-size: 0.85em; color: var(--text-gray); margin-top: 2px; }
+        .video-card-info .vc-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 0.5rem;
+            font-size: 0.82em;
+            color: var(--text-gray);
+        }
+
+        /* ── Footer ── */
+        .footer {
+            background: var(--dark-gray);
+            border-top: 3px solid var(--primary-orange);
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        .footer-section h3 { color: var(--primary-orange); margin-bottom: 1rem; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section a { color: var(--text-gray); text-decoration: none; transition: color 0.3s; }
+        .footer-section a:hover { color: var(--primary-orange); }
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--light-gray);
+            color: var(--text-gray);
+        }
+
+        /* ── Modal ── */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            overflow-y: auto;
+            padding: 2rem;
+        }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .modal-content {
+            background: var(--dark-gray);
+            border-radius: 15px;
+            padding: 2rem;
+            max-width: 1200px;
+            width: 100%;
+            position: relative;
+            border: 2px solid var(--primary-orange);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1rem; right: 1rem;
+            background: var(--primary-orange);
+            border: none;
+            color: #ffffff;
+            font-size: 1.5em;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close:hover { background: var(--dark-orange); }
+        .scorecard-table { width: 100%; margin-top: 2rem; overflow-x: auto; }
+        .scorecard-table th { background: var(--medium-gray); padding: 0.75rem; text-align: center; }
+        .scorecard-table td { text-align: center; padding: 0.75rem; }
+        .loading { text-align: center; padding: 3rem; color: var(--text-gray); }
+        .no-data { text-align: center; padding: 3rem; color: var(--text-gray); font-size: 1.2em; }
+
+        /* ── Mobile ── */
+        @media (max-width: 1024px) {
+            .scorecard-video-grid { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2em; }
+            .hamburger { display: flex; }
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%; left: 0; right: 0;
+                background: var(--dark-gray);
+                flex-direction: column;
+                padding: 0.5rem 0;
+                border-bottom: 2px solid var(--primary-orange);
+                gap: 0;
+            }
+            .nav-menu.open { display: flex; }
+            .nav-menu li { width: 100%; }
+            .nav-menu a {
+                display: block;
+                padding: 0.75rem 2rem;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            .nav-menu a::after { display: none; }
+            table { font-size: 0.9em; }
+            th, td { padding: 0.5rem; }
+            .video-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col hero-gradient">
+<body>
 
-        <nav class="glass border-b border-white/10 p-4 md:p-6 sticky top-0 z-50">
-        <div class="container mx-auto flex flex-wrap items-center justify-between gap-4">
-
-            <div class="flex items-center gap-4">
-                <a href="index.html" class="hover:opacity-80 transition-opacity">
-                    <h1 class="text-2xl md:text-3xl font-black italic tracking-tighter uppercase leading-none">VPIN<span class="text-orange-500">HUB</span></h1>
-                </a>
-            </div>
-
-            <div class="hidden xl:flex items-center gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest">
-                <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors">Join Our Discord</a>
-                <span class="text-white/20">|</span>
-                <a href="competition/" class="text-orange-400 hover:text-orange-300 transition-colors">Competition</a>
-
-                <div class="relative group py-2">
-                    <button class="text-gray-300 hover:text-emerald-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
-                        Tutorials <span class="text-[8px]">▼</span>
-                    </button>
-                    <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
-                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
-                            <span class="text-[9px] text-gray-500 font-black">GUIDES & TUTORIALS</span>
-                        </div>
-                        <a href="how-to-build-a-vpin-cab.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>How to Build a VPIN Cab</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="how-to-update-vpin.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>How to Update VPIN</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="how-to-setup-altsound2.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>How to Setup AltSound2</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="how-to-play-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>How to Play Pinball</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="how-to-stream-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>How to Stream Pinball</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="vpx-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>VPX Table Tutorials</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="fp-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>FP Table Tutorials</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="fp-aio-update.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
-                            <span>FP All-in-One</span> <span class="text-[10px]">↗</span>
-                        </a>
-                    </div>
-                </div>
-
-                <a href="interviews.html" class="text-gray-300 hover:text-fuchsia-400 transition-colors">Interviews</a>
-                <span class="text-white/20">|</span>
-                <a href="showcase.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Latest Tables</a>
-
-                <div class="relative group py-2">
-                    <button class="text-gray-300 hover:text-cyan-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
-                        Downloads <span class="text-[8px]">▼</span>
-                    </button>
-                    <div class="nav-dropdown absolute top-full right-0 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
-                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
-                            <span class="text-[9px] text-gray-500 font-black">ESSENTIAL SOFTWARE</span>
-                        </div>
-                        <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>PinUp Popper 'Baller'</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>VPX Latest</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>B2S Server Latest</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>Freezy DMDEXT Latest</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>FLEX DMD Latest</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
-                            <span>DOF Tool Config V3</span> <span class="text-[10px]">↗</span>
-                        </a>
-                        <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
-                            <span>FP Latest</span> <span class="text-[10px]">↗</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <button id="menu-btn" class="xl:hidden bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-white transition-colors font-bold text-sm uppercase tracking-widest">
-                MENU ☰
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">VPINHUB <span>GT Ballers</span></a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#weekly">Weekly Challenge</a></li>
+                <li><a href="#leaderboard">Rankings</a></li>
+                <li><a href="#players">Players</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#videos">Videos</a></li>
+            </ul>
+            <button class="hamburger" id="hamburger" onclick="toggleNav()" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
             </button>
-        </div>
-
-        <div id="mobile-menu" class="xl:hidden flex flex-col gap-4 mt-4 pt-4 border-t border-white/10 text-xs font-bold uppercase tracking-widest px-2 pb-2">
-            <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join Our Discord</a>
-            <a href="competition/" class="text-orange-400 hover:text-orange-300">Competition</a>
-
-            <div class="pt-2 pb-2">
-                <span class="text-gray-500 mb-3 block">Tutorials</span>
-                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
-                    <a href="how-to-build-a-vpin-cab.html" class="text-gray-400 hover:text-white text-[10px]">How to Build a VPIN Cab</a>
-                    <a href="how-to-update-vpin.html" class="text-gray-400 hover:text-white text-[10px]">How to Update VPIN</a>
-                    <a href="how-to-setup-altsound2.html" class="text-gray-400 hover:text-white text-[10px]">How to Setup AltSound2</a>
-                    <a href="how-to-play-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Play Pinball</a>
-                    <a href="how-to-stream-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Stream Pinball</a>
-                    <a href="vpx-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">VPX Table Tutorials</a>
-                    <a href="fp-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">FP Table Tutorials</a>
-                    <a href="fp-aio-update.html" class="text-gray-400 hover:text-white text-[10px]">FP All-in-One</a>
-                </div>
-            </div>
-
-            <a href="interviews.html" class="text-fuchsia-400 hover:text-fuchsia-300">Interviews</a>
-            <a href="showcase.html" class="text-cyan-400 hover:text-cyan-300">Latest Tables</a>
-
-            <div class="pt-2 pb-2">
-                <span class="text-gray-500 mb-3 block">Software Downloads</span>
-                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
-                    <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="text-gray-400 hover:text-white text-[10px]">PinUp Popper 'Baller'</a>
-                    <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">VPX Latest</a>
-                    <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">B2S Server Latest</a>
-                    <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">Freezy DMDEXT Latest</a>
-                    <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FLEX DMD Latest</a>
-                    <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="text-gray-400 hover:text-white text-[10px]">DOF Tool Config V3</a>
-                    <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FP Latest</a>
-                </div>
-            </div>
         </div>
     </nav>
 
-    <main class="flex-1 container mx-auto px-6 py-12 max-w-6xl">
-        
-        <div class="text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-4 text-white">Welcome to the Hub</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto text-sm leading-relaxed">
-                Your portal for weekly virtual pinball tournaments, table showcases, creator interviews, and essential community resources.
-            </p>
-
-            <form action="showcase.html" method="GET" class="relative w-full max-w-2xl mx-auto mt-8">
-                <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                    </svg>
-                </div>
-                <input type="text" name="q" placeholder="Search tables, authors, or features..." required
-                       class="w-full glass bg-white/5 text-white placeholder-gray-500 border border-white/10 rounded-full py-4 pl-14 pr-32 focus:outline-none focus:border-cyan-500 focus:bg-white/10 transition-all shadow-[0_4px_10px_rgba(0,0,0,0.3)] focus:shadow-[0_0_20px_rgba(6,182,212,0.25)]">
-                <button type="submit" class="absolute inset-y-2 right-2 bg-cyan-500 hover:bg-cyan-400 text-gray-900 font-bold uppercase tracking-widest text-[10px] md:text-xs px-6 rounded-full transition-all hover:scale-105 shadow-md">
-                    Search
-                </button>
-            </form>
-            <p class="text-gray-600 text-[10px] uppercase tracking-widest mt-3">
-                Powered by <a href="https://virtualpinballspreadsheet.github.io/help" target="_blank" rel="noopener" class="text-gray-500 hover:text-cyan-400 transition-colors underline underline-offset-2">Virtual Pinball Spreadsheet</a>
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            <a href="competition/" class="hub-card glass rounded-2xl p-6 border-l-4 border-orange-500 glow-orange flex flex-col justify-between">
-                <div>
-                    <div class="text-3xl mb-4">🏆</div>
-                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Active Events</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        Enter Special When Lit, Thursday Throwdown, and VPC Competition Corner.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-white/5 text-orange-500 font-bold uppercase text-[10px] tracking-widest flex justify-between">
-                    <span>View Competitions</span><span>→</span>
-                </div>
-            </a>
-
-            <a href="how-to-build-a-vpin-cab.html" class="hub-card glass rounded-2xl p-6 border-l-4 border-emerald-500 glow-emerald flex flex-col justify-between">
-                <div>
-                    <div class="text-3xl mb-4">🛠️</div>
-                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Getting Started</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        Start your journey here. Learn how to build your own Virtual Pinball Cabinet and configure your setup.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-white/5 text-emerald-400 font-bold uppercase text-[10px] tracking-widest flex justify-between">
-                    <span>View Guides</span><span>→</span>
-                </div>
-            </a>
-
-            <a href="competition/past-competitions.html" class="hub-card glass rounded-2xl p-6 border-l-4 border-indigo-500 glow-indigo flex flex-col justify-between">
-                <div>
-                    <div class="text-3xl mb-4">📜</div>
-                    <h3 class="text-2xl font-black uppercase italic text-white mb-2">Hall of Fame</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed">
-                        Look back at historical leaderboards, past champions, and legacy achievements.
-                    </p>
-                </div>
-                <div class="mt-6 pt-4 border-t border-white/5 text-indigo-400 font-bold uppercase text-[10px] tracking-widest flex justify-between">
-                    <span>View Archives</span><span>→</span>
-                </div>
-            </a>
-        </div>
-
-        <div class="glass p-8 md:p-12 rounded-3xl border border-indigo-500/30 bg-indigo-900/10 text-center glow-indigo mb-8 relative overflow-hidden">
-            <div class="absolute inset-0 bg-white/5 opacity-10 pointer-events-none"></div>
-            <div class="relative z-10">
-                <h3 class="text-3xl md:text-4xl font-black uppercase italic text-white mb-4">Join the Conversation</h3>
-                <p class="text-gray-300 text-sm md:text-base leading-relaxed max-w-2xl mx-auto mb-8">
-                    Whether you're building your first cabinet, looking for troubleshooting help, organizing events, or just want to discuss the latest VPX releases—our community is the place to be!
-                </p>
-                <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="inline-flex items-center gap-3 bg-indigo-500 hover:bg-indigo-400 text-white font-black uppercase tracking-widest text-sm px-8 py-4 rounded-full transition-all hover:scale-105 shadow-[0_0_20px_rgba(99,102,241,0.4)]">
-                    <span class="text-xl">💬</span> Join our Discord
-                </a>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1><span class="highlight">VPINHUB</span> Golden Tee Ballers</h1>
+            <p>Compete. Dominate. Rise through the ranks.</p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="#leaderboard" class="btn">View Leaderboard</a>
+                <a href="#" onclick="showJoinModal()" class="btn btn-secondary">Join Leaderboard</a>
             </div>
         </div>
+    </section>
 
-    </main>
+    <section class="section" id="stats">
+        <div class="container">
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card">
+                    <span class="stat-number" id="totalPlayers">-</span>
+                    <span class="stat-label">Total Players</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalRounds">-</span>
+                    <span class="stat-label">Rounds Played</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number" id="totalVideos">-</span>
+                    <span class="stat-label">Video Submissions</span>
+                </div>
+                <div class="stat-card" onclick="bestRoundEntry && showScorecard(bestRoundEntry)" style="cursor:pointer;">
+                    <span class="stat-number" id="bestScore">-</span>
+                    <span class="stat-label" id="bestScoreDetails">Current Best Round</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <footer class="bg-black/40 border-t border-white/5 py-8 mt-auto">
-        <div class="container mx-auto px-6 text-center flex justify-center items-center gap-4">
-            <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest">
-                © VPINHUB.
-            </p>
+    <section class="section section-alt" id="weekly">
+        <div class="container">
+            <div class="section-header">
+                <h2>🏆 Weekly Challenge Course (GT 2018)</h2>
+                <p id="weeklyCourseName">Alpine Run</p>
+                <p id="weeklyDateRange" style="font-size: 0.9em; opacity: 0.8; margin-top: 0.5rem;">Loading week range...</p>
+                <div id="weeklyCountdown"></div>
+            </div>
+            <div class="leaderboard-preview">
+                <div class="leaderboard-content" id="weeklyContent">
+                    <div class="loading">Loading weekly challenge...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="spotlight">
+                <h3>🎬 Random Player Spotlight</h3>
+                <div id="spotlightContent">
+                    <div class="loading">Loading spotlight...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="leaderboard">
+        <div class="container">
+            <div class="section-header">
+                <h2>Current Leaderboard</h2>
+                <p>Top performers across all Golden Tee games</p>
+            </div>
+            <div class="leaderboard-preview">
+                <div class="tabs-wrapper">
+                    <div class="game-tabs" id="gameTabs">
+                        <div class="loading">Loading games...</div>
+                    </div>
+                </div>
+                <div class="leaderboard-content" id="leaderboardContent">
+                    <div class="loading">Select a game to view rankings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="players">
+        <div class="container">
+            <div class="section-header">
+                <h2>Players</h2>
+                <p>Top performers ranked by best round</p>
+            </div>
+            <div id="playersContent">
+                <div class="loading">Loading players...</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-alt" id="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Courses</h2>
+                <p>All played courses with best video submissions</p>
+            </div>
+            <div class="leaderboard-preview">
+                <div class="leaderboard-content" id="coursesContent">
+                    <div class="loading">Loading courses...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="videos">
+        <div class="container">
+            <div class="section-header">
+                <h2>Video Submissions</h2>
+                <p>Best performances ranked by score</p>
+            </div>
+            <div class="leaderboard-preview" style="overflow: visible;">
+                <div id="videosContent">
+                    <div class="loading">Loading videos...</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About</h3>
+                    <p>VPINHUB Golden Tee Ballers - Where the best compete in TeknoParrot's Golden Tee tournaments.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#leaderboard">Rankings</a></li>
+                        <li><a href="#players">Players</a></li>
+                        <li><a href="#courses">Courses</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Community</h3>
+                    <ul>
+                        <li><a href="https://teknoparrot.com" target="_blank">TeknoParrot</a></li>
+                        <li><a href="#videos">Videos</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="lastUpdated" style="font-size: 0.85em; opacity: 0.6; margin-top: 0.4rem;"></p>
+            </div>
         </div>
     </footer>
 
-    <script>
-        const menuBtn = document.getElementById('menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
+    <!-- Join Modal -->
+    <div class="modal" id="joinModal">
+        <div class="modal-content" style="max-width: 600px;">
+            <button class="modal-close" onclick="closeJoinModal()">×</button>
+            <h2 style="color: var(--primary-orange); margin-bottom: 1.5rem;">Join the Leaderboard</h2>
+            <div style="line-height: 2; font-size: 1.1em;">
+                <p style="margin-bottom: 1rem;">Follow these steps to join the VPINHUB Golden Tee Ballers leaderboard:</p>
+                <ol style="margin-left: 1.5rem; margin-bottom: 1.5rem;">
+                    <li>Visit <a href="https://vpinhub.com" target="_blank" style="color: var(--primary-orange); text-decoration: none; font-weight: 600;">vpinhub.com</a></li>
+                    <li>Join our <strong style="color: var(--primary-orange);">Discord</strong> server</li>
+                    <li>Message <strong style="color: var(--primary-orange);">Paladin</strong> to be added to the leaderboard</li>
+                </ol>
+                <p style="background: var(--medium-gray); padding: 1rem; border-radius: 8px; border-left: 4px solid var(--primary-orange);">
+                    <strong>Note:</strong> TeknoParrot Premium is required for score submission
+                </p>
+            </div>
+        </div>
+    </div>
 
-        menuBtn.addEventListener('click', () => {
-            if (mobileMenu.classList.contains('open')) {
-                mobileMenu.classList.remove('open');
-            } else {
-                mobileMenu.classList.add('open');
-            }
+    <!-- Scorecard Modal -->
+    <div class="modal" id="scorecardModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <script>
+        let leaderboardData = [];
+        let bestRoundEntry = null;
+
+        const WEEKLY_CHALLENGE_COURSE = "Alpine Run";
+        const WEEKLY_GAME_YEAR = "2018";
+
+        window.addEventListener('DOMContentLoaded', function() {
+            loadJSONFile('golden_tee_leaderboard.json');
+            initScrollSpy();
         });
+
+        function loadJSONFile(filename) {
+            fetch(filename + '?v=' + new Date().getTime())
+                .then(r => r.json())
+                .then(data => {
+                    leaderboardData = data;
+                    initializeLeaderboards();
+                    updateStats();
+                    showLastUpdated();
+                    showRandomSpotlight();
+                    showWeeklyChallenge();
+                    showPlayers();
+                    showCourses();
+                    showVideos();
+                })
+                .catch(err => {
+                    console.error('Error loading data:', err);
+                    document.getElementById('spotlightContent').innerHTML =
+                        '<div class="no-data">Unable to load data. Please check if golden_tee_leaderboard.json exists.</div>';
+                });
+        }
+
+        /* ── Score helpers ── */
+        function scoreClass(val) {
+            if (!val || val === 'E') return 'score-highlight';
+            const n = parseInt(val, 10);
+            if (isNaN(n)) return 'score-highlight';
+            if (n < 0) return 'score-under';
+            if (n > 0) return 'score-over';
+            return 'score-highlight';
+        }
+        function scoreSpan(val) {
+            return `<span class="${scoreClass(val)}">${val || 'E'}</span>`;
+        }
+
+        /* ── Hamburger ── */
+        function toggleNav() {
+            const menu = document.getElementById('navMenu');
+            const btn  = document.getElementById('hamburger');
+            menu.classList.toggle('open');
+            btn.classList.toggle('open');
+        }
+
+        /* ── Scroll spy ── */
+        function initScrollSpy() {
+            const sections  = document.querySelectorAll('section[id]');
+            const navLinks  = document.querySelectorAll('.nav-menu a[href^="#"]');
+            const observer  = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.toggle('active',
+                                link.getAttribute('href') === '#' + entry.target.id);
+                        });
+                    }
+                });
+            }, { threshold: 0.35 });
+            sections.forEach(s => observer.observe(s));
+        }
+
+        /* ── Date parsing ── */
+        function parseDate(dateStr) {
+            if (!dateStr) return null;
+            const parts = dateStr.trim().split(' ');
+            const datePart = parts[0], timePart = parts[1], ampm = parts[2];
+            let day, month, year;
+            if (datePart.includes('-')) {
+                const c = datePart.split('-');
+                if (c.length !== 3) return null;
+                day = parseInt(c[0], 10); month = parseInt(c[1], 10) - 1; year = parseInt(c[2], 10);
+            } else {
+                const c = datePart.split('/');
+                if (c.length !== 3) return null;
+                month = parseInt(c[0], 10) - 1; day = parseInt(c[1], 10); year = parseInt(c[2], 10);
+            }
+            if (year < 100) year += 2000;
+            let hours = 0, minutes = 0, seconds = 0;
+            if (timePart) {
+                const t = timePart.split(':');
+                if (t.length >= 2) {
+                    hours = parseInt(t[0], 10); minutes = parseInt(t[1], 10);
+                    seconds = t.length > 2 ? parseInt(t[2], 10) : 0;
+                    if (ampm) {
+                        if (ampm.toUpperCase() === 'PM' && hours < 12) hours += 12;
+                        if (ampm.toUpperCase() === 'AM' && hours === 12) hours  = 0;
+                    }
+                }
+            }
+            const d = new Date(Date.UTC(year, month, day, hours, minutes, seconds));
+            return isNaN(d.getTime()) ? null : d;
+        }
+
+        /* ── YouTube helpers ── */
+        function getYtId(url) {
+            if (!url) return null;
+            const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+            return m ? m[1] : null;
+        }
+        function ytThumb(url) {
+            const id = getYtId(url);
+            return id ? `https://img.youtube.com/vi/${id}/mqdefault.jpg` : null;
+        }
+
+        /* ── Weekly Challenge ── */
+        function showWeeklyChallenge() {
+            const now = new Date();
+            const et  = new Date(now.toLocaleString('en-US', { timeZone: 'America/New_York' }));
+
+            let weekStart = new Date(et);
+            weekStart.setHours(12, 0, 0, 0);
+            const dayNum = weekStart.getDay();
+            const daysSinceFriday = (dayNum >= 5) ? (dayNum - 5) : (dayNum + 2);
+            weekStart.setDate(weekStart.getDate() - daysSinceFriday);
+            if (et.getDay() === 5 && et.getHours() < 12) weekStart.setDate(weekStart.getDate() - 7);
+
+            const weekEnd = new Date(weekStart);
+            weekEnd.setDate(weekEnd.getDate() + 7);
+
+            const opts = { month: 'short', day: 'numeric', year: 'numeric' };
+            document.getElementById('weeklyDateRange').textContent =
+                `${weekStart.toLocaleDateString('en-US', opts)} 12pm ET – ${weekEnd.toLocaleDateString('en-US', opts)} 12pm ET`;
+            document.getElementById('weeklyCourseName').textContent = WEEKLY_CHALLENGE_COURSE;
+
+            // Countdown badge
+            const msLeft   = weekEnd - now;
+            const daysLeft  = Math.max(0, Math.floor(msLeft / 86400000));
+            const hoursLeft = Math.max(0, Math.floor((msLeft % 86400000) / 3600000));
+            const urgentClass = daysLeft < 2 ? ' urgent' : '';
+            const countdownText = daysLeft > 0
+                ? `⏱ ${daysLeft}d ${hoursLeft}h remaining`
+                : hoursLeft > 0 ? `⏱ ${hoursLeft}h remaining` : '⏱ Ending soon!';
+            document.getElementById('weeklyCountdown').innerHTML =
+                `<span class="countdown-badge${urgentClass}">${countdownText}</span>`;
+
+            const allWeekly = leaderboardData.filter(entry => {
+                if (entry.course !== WEEKLY_CHALLENGE_COURSE) return false;
+                if (!entry.game || !entry.game.includes(WEEKLY_GAME_YEAR)) return false;
+                const d = parseDate(entry.date);
+                return d && d >= weekStart && d <= weekEnd;
+            });
+
+            const best = {};
+            allWeekly.forEach(entry => {
+                const p = entry.username || 'Unknown';
+                const s = parseInt(entry.total_score, 10);
+                if (isNaN(s)) return;
+                if (!best[p] || s < parseInt(best[p].total_score, 10)) best[p] = entry;
+            });
+
+            const weekly = Object.values(best).sort((a, b) =>
+                (parseInt(a.total_score, 10) || 999) - (parseInt(b.total_score, 10) || 999));
+
+            const container = document.getElementById('weeklyContent');
+            if (!weekly.length) {
+                container.innerHTML = `<div class="no-data">
+                    <p style="font-size:1.5em;margin-bottom:1rem;">No entries yet for this week's challenge!</p>
+                    <p>Be the first to play <strong style="color:var(--primary-orange);">Alpine Run</strong> and submit your score.</p>
+                </div>`;
+                return;
+            }
+
+            let html = `
+                <div style="text-align:center;margin-bottom:2rem;padding:1.5rem;background:var(--medium-gray);border-radius:10px;border:2px solid var(--primary-orange);">
+                    <h3 style="color:var(--primary-orange);margin-bottom:0.5rem;">Current Week's Challenge</h3>
+                    <p style="font-size:1.2em;"><strong>Alpine Run</strong></p>
+                    <p style="font-size:0.9em;opacity:0.8;">${weekly.length} player${weekly.length === 1 ? '' : 's'} competing this week</p>
+                </div>
+                <table><thead><tr><th>Rank</th><th>Player</th><th>Score</th><th>Total</th><th>Date</th><th>Video</th></tr></thead><tbody>`;
+
+            weekly.forEach((entry, i) => {
+                const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+                const d = parseDate(entry.date);
+                const dateStr = d ? d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) : 'N/A';
+                html += `<tr onclick='showScorecard(${JSON.stringify(entry).replace(/'/g, "&apos;")})'>
+                    <td><span class="rank ${rankClass}">#${i + 1}</span></td>
+                    <td><span class="player-name">${entry.username || 'Unknown'}</span></td>
+                    <td>${scoreSpan(entry.score_vs_par)}</td>
+                    <td>${entry.total_score || 'N/A'}</td>
+                    <td>${dateStr}</td>
+                    <td>${entry.youtube_video ? '<span class="video-icon">📹</span>' : ''}</td>
+                </tr>`;
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        /* ── Stats ── */
+        function updateStats() {
+            const players = new Set(leaderboardData.map(e => e.username)).size;
+            const rounds  = leaderboardData.length;
+            const videos  = leaderboardData.filter(e => e.youtube_video).length;
+            let bestEntry = null, bestScoreValue = 999;
+
+            leaderboardData.filter(e => e.game && /^golden tee/i.test(e.game)).forEach(entry => {
+                const s = parseInt(entry.total_score, 10);
+                if (!isNaN(s) && s < bestScoreValue) { bestScoreValue = s; bestEntry = entry; }
+            });
+
+            document.getElementById('totalPlayers').textContent = players;
+            document.getElementById('totalRounds').textContent  = rounds;
+            document.getElementById('totalVideos').textContent  = videos;
+
+            if (bestEntry) {
+                bestRoundEntry = bestEntry;
+                document.getElementById('bestScore').textContent = bestEntry.score_vs_par || 'E';
+                document.getElementById('bestScoreDetails').innerHTML = `
+                    <strong style="color:var(--primary-orange);font-size:1.2em;">Best Round</strong><br>
+                    ${bestEntry.username || 'Unknown'}<br>
+                    ${bestEntry.course || 'Unknown Course'}<br>
+                    (${bestEntry.total_score})`;
+            }
+        }
+
+        /* ── Players ── */
+        function showPlayers() {
+            const map = {};
+            leaderboardData.forEach(entry => {
+                const p = entry.username || 'Unknown';
+                const s = parseInt(entry.total_score, 10);
+                if (!map[p]) map[p] = { name: p, bestScore: 999, bestEntry: null, totalRounds: 0 };
+                map[p].totalRounds++;
+                if (!isNaN(s) && s < map[p].bestScore) { map[p].bestScore = s; map[p].bestEntry = entry; }
+            });
+
+            const players = Object.values(map).filter(p => p.bestEntry)
+                .sort((a, b) => a.bestScore - b.bestScore);
+            const container = document.getElementById('playersContent');
+            if (!players.length) { container.innerHTML = '<div class="no-data">No players found</div>'; return; }
+
+            let html = '';
+            players.forEach((player, i) => {
+                const entry = player.bestEntry;
+                const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+                html += `<div class="player-card">
+                    <div class="player-header">
+                        <div class="player-rank ${rankClass}">#${i + 1}</div>
+                        <div class="player-details">
+                            <h3>${player.name}</h3>
+                            <div class="player-stats">
+                                <span><strong>Best Score:</strong> ${scoreSpan(entry.score_vs_par)} (${entry.total_score})</span>
+                                <span><strong>Course:</strong> ${entry.course || 'Unknown'}</span>
+                                <span><strong>Rounds Played:</strong> ${player.totalRounds}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="scorecard-video-grid">
+                        <div class="scorecard-compact">
+                            <h4 style="color:var(--primary-orange);margin-bottom:1rem;">Best Round Scorecard</h4>
+                            ${buildCompactScorecard(entry)}
+                        </div>
+                        ${entry.youtube_embed ? `<div>
+                            <h4 style="color:var(--primary-orange);margin-bottom:1rem;">Video Preview</h4>
+                            <div class="video-container">
+                                <iframe src="${entry.youtube_embed}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>` : '<div style="display:flex;align-items:center;justify-content:center;opacity:0.5;">No video available</div>'}
+                    </div>
+                </div>`;
+            });
+            container.innerHTML = html;
+        }
+
+        function buildCompactScorecard(entry) {
+            if (!entry.players || !entry.players.length) return '<p>No scorecard data available</p>';
+            const player = entry.players[0];
+            const scores = player.scores, pars = entry.pars, holes = entry.holes || [];
+            const holeHeaders = [], dataIndices = [];
+            for (let i = 1; i < holes.length; i++) {
+                if (holes[i] && !isNaN(parseInt(holes[i], 10))) {
+                    holeHeaders.push(holes[i]); dataIndices.push(i - 1);
+                }
+            }
+            if (!dataIndices.length) return '<p>No hole data available</p>';
+            let html = '<table><thead><tr><th>Hole</th>';
+            holeHeaders.forEach(h => html += `<th>${h}</th>`);
+            html += '<th>Total</th></tr></thead><tbody>';
+            if (pars && pars.length) {
+                html += '<tr><td><strong>Par</strong></td>';
+                dataIndices.forEach(i => html += `<td>${pars[i] || '-'}</td>`);
+                html += `<td><strong>${entry.score_vs_par || 'E'}</strong></td></tr>`;
+            }
+            html += '<tr><td><strong>Score</strong></td>';
+            dataIndices.forEach(i => {
+                const score = scores[i] || '-', par = pars && pars[i] ? parseInt(pars[i], 10) : null;
+                const n = parseInt(score, 10);
+                let style = '';
+                if (!isNaN(n) && par !== null) {
+                    if (n === 1) style = 'color:#FFD700;font-weight:bold;';
+                    else {
+                        const diff = n - par;
+                        if (diff <= -2) style = 'color:#00BFFF;font-weight:bold;';
+                        else if (diff === -1) style = 'color:var(--score-under);font-weight:bold;';
+                        else if (diff > 0)  style = 'color:var(--score-over);font-weight:bold;';
+                    }
+                }
+                html += `<td style="${style}">${score}</td>`;
+            });
+            html += `<td><strong>${entry.total_score || 'N/A'}</strong></td></tr></tbody></table>`;
+            return html;
+        }
+
+        /* ── Courses ── */
+        function showCourses() {
+            const map = {};
+            leaderboardData.forEach(entry => {
+                const c = entry.course; if (!c) return;
+                if (!map[c]) map[c] = { name: c, bestScore: 999, bestEntry: null };
+                const s = parseInt(entry.total_score, 10);
+                if (!isNaN(s) && s < map[c].bestScore) { map[c].bestScore = s; map[c].bestEntry = entry; }
+            });
+            const courses = Object.values(map).sort((a, b) => a.name.localeCompare(b.name));
+            const container = document.getElementById('coursesContent');
+            if (!courses.length) { container.innerHTML = '<div class="no-data">No courses found</div>'; return; }
+            let html = `<table><thead><tr><th>Course Name</th><th>Best Score</th><th>Player</th><th>Best Video</th></tr></thead><tbody>`;
+            courses.forEach(course => {
+                const entry = course.bestEntry, hasVideo = entry && entry.youtube_video;
+                html += `<tr ${hasVideo ? `onclick='showScorecard(${JSON.stringify(entry).replace(/'/g, "&apos;")})' style="cursor:pointer;"` : ''}>
+                    <td><strong style="color:#fff;">${course.name}</strong></td>
+                    <td>${scoreSpan(entry?.score_vs_par)} (${entry?.total_score || 'N/A'})</td>
+                    <td><span class="player-name">${entry?.username || 'Unknown'}</span></td>
+                    <td>${hasVideo
+                        ? `<a href="${entry.youtube_video}" target="_blank" onclick="event.stopPropagation()" style="color:var(--primary-orange);text-decoration:none;">🎬 Watch</a>`
+                        : '<span style="opacity:0.5;">No video</span>'
+                    }</td>
+                </tr>`;
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        /* ── Videos — card grid ── */
+        function showVideos() {
+            const entries = leaderboardData
+                .filter(e => e.youtube_video)
+                .sort((a, b) => (parseInt(a.total_score, 10) || 999) - (parseInt(b.total_score, 10) || 999));
+            const container = document.getElementById('videosContent');
+            if (!entries.length) { container.innerHTML = '<div class="no-data">No video submissions yet</div>'; return; }
+
+            let html = '<div class="video-grid">';
+            entries.forEach((entry, i) => {
+                const thumb = ytThumb(entry.youtube_video);
+                const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+                const imgHtml = thumb
+                    ? `<img src="${thumb}" alt="Thumbnail" loading="lazy">`
+                    : `<div style="width:100%;aspect-ratio:16/9;background:var(--light-gray);display:flex;align-items:center;justify-content:center;font-size:2em;">🎬</div>`;
+                html += `<div class="video-card" onclick='showScorecard(${JSON.stringify(entry).replace(/'/g, "&apos;")})'>
+                    <div class="video-thumbnail-wrapper">
+                        ${imgHtml}
+                        <span class="video-rank-badge ${rankClass}">#${i + 1}</span>
+                        <div class="play-overlay">▶</div>
+                    </div>
+                    <div class="video-card-info">
+                        <div class="vc-player">${entry.username || 'Unknown'}</div>
+                        <div class="vc-course">${entry.course || 'Unknown Course'}</div>
+                        <div class="vc-meta">
+                            <span style="font-size:0.8em;opacity:0.7;">${entry.game || ''}</span>
+                            ${scoreSpan(entry.score_vs_par)}
+                        </div>
+                    </div>
+                </div>`;
+            });
+            html += '</div>';
+            container.innerHTML = html;
+        }
+
+        /* ── Last Updated ── */
+        function showLastUpdated() {
+            const dates = leaderboardData.map(e => e.scraped_at).filter(Boolean).sort().reverse();
+            if (!dates.length) return;
+            const d = new Date(dates[0]);
+            if (isNaN(d.getTime())) return;
+            const el = document.getElementById('lastUpdated');
+            if (el) el.textContent = 'Data updated: ' + d.toLocaleString('en-US',
+                { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit' });
+        }
+
+        /* ── Spotlight ── */
+        function showRandomSpotlight() {
+            const entries = leaderboardData.filter(e => e.youtube_embed);
+            if (!entries.length) {
+                document.getElementById('spotlightContent').innerHTML = '<div class="no-data">No videos available</div>';
+                return;
+            }
+            const e = entries[Math.floor(Math.random() * entries.length)];
+            document.getElementById('spotlightContent').innerHTML = `
+                <div class="video-container"><iframe src="${e.youtube_embed}" frameborder="0" allowfullscreen></iframe></div>
+                <div class="spotlight-info">
+                    <span class="player-name">${e.username || 'Unknown'}</span> on ${e.course || 'Unknown Course'}<br>
+                    Score: <strong style="color:var(--primary-orange)">${e.score_vs_par || 'E'}</strong> (${e.total_score || 'N/A'})
+                </div>`;
+        }
+
+        /* ── Leaderboard tabs ── */
+        function initializeLeaderboards() {
+            const available = [...new Set(leaderboardData.map(e => e.game))];
+            const order = [
+                'Golden Tee Unplugged 2019','Golden Tee Live 2019',
+                'Golden Tee Unplugged 2018','Golden Tee Live 2018',
+                'Golden Tee Unplugged 2017','Golden Tee Live 2017',
+                'Golden Tee Unplugged 2016','Golden Tee Live 2016',
+                'Golden Tee Live 2007','Golden Tee Live 2006','Power Putt Live 2013'
+            ];
+            const games = order.filter(g => available.includes(g));
+            createTabs(games);
+            if (games.length) showGame(games[0]);
+        }
+
+        function createTabs(games) {
+            const c = document.getElementById('gameTabs');
+            c.innerHTML = '';
+            games.forEach(game => {
+                const btn = document.createElement('button');
+                btn.className = 'tab';
+                btn.textContent = game;
+                btn.onclick = () => showGame(game);
+                c.appendChild(btn);
+            });
+        }
+
+        function showGame(game) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t.textContent === game));
+            const entries = leaderboardData.filter(e => e.game === game)
+                .sort((a, b) => (parseInt(a.total_score, 10) || 999) - (parseInt(b.total_score, 10) || 999))
+                .slice(0, 10);
+            displayLeaderboard(entries);
+        }
+
+        function displayLeaderboard(entries) {
+            const container = document.getElementById('leaderboardContent');
+            if (!entries.length) { container.innerHTML = '<div class="no-data">No entries found</div>'; return; }
+            let html = `<table><thead><tr><th>Rank</th><th>Player</th><th>Course</th><th>Score</th><th>Total</th><th>Video</th></tr></thead><tbody>`;
+            entries.forEach((entry, i) => {
+                const rankClass = i === 0 ? 'rank-1' : i === 1 ? 'rank-2' : i === 2 ? 'rank-3' : '';
+                html += `<tr onclick='showScorecard(${JSON.stringify(entry).replace(/'/g, "&apos;")})'>
+                    <td><span class="rank ${rankClass}">#${i + 1}</span></td>
+                    <td><span class="player-name">${entry.username || 'Unknown'}</span></td>
+                    <td>${entry.course || 'Unknown'}</td>
+                    <td>${scoreSpan(entry.score_vs_par)}</td>
+                    <td>${entry.total_score || 'N/A'}</td>
+                    <td>${entry.youtube_video ? '<span class="video-icon">📹</span>' : ''}</td>
+                </tr>`;
+            });
+            html += '</tbody></table>';
+            container.innerHTML = html;
+        }
+
+        /* ── Scorecard modal ── */
+        function showScorecard(entry) {
+            const content = document.getElementById('modalContent');
+            let html = `<h2 style="color:var(--primary-orange)">${entry.game}</h2>
+                <h3>${entry.username || 'Unknown'} – ${entry.course || 'Unknown'}</h3>
+                <p style="font-size:1.3em;margin:1rem 0;">
+                    <strong style="font-size:1.5em;">${scoreSpan(entry.score_vs_par)}</strong>
+                    <span style="opacity:0.7;"> (${entry.total_score || 'N/A'})</span> | ${entry.date || 'Unknown date'}
+                </p>`;
+            if (entry.youtube_embed) html += `<div class="video-container"><iframe src="${entry.youtube_embed}" frameborder="0" allowfullscreen></iframe></div>`;
+            if (entry.players && entry.players.length) html += buildScorecardTable(entry);
+            content.innerHTML = html;
+            document.getElementById('scorecardModal').classList.add('active');
+        }
+
+        function buildScorecardTable(entry) {
+            const player = entry.players[0], scores = player.scores, pars = entry.pars, holes = entry.holes || [];
+            const holeHeaders = [], dataIndices = [];
+            for (let i = 1; i < holes.length; i++) {
+                if (holes[i] && !isNaN(parseInt(holes[i], 10))) { holeHeaders.push(holes[i]); dataIndices.push(i - 1); }
+            }
+            if (!dataIndices.length) return '';
+            let html = '<div class="scorecard-table"><table><thead><tr><th>Hole</th>';
+            holeHeaders.forEach(h => html += `<th>${h}</th>`);
+            html += '<th>Total</th></tr></thead><tbody>';
+            if (pars && pars.length) {
+                html += '<tr><td><strong>Par</strong></td>';
+                dataIndices.forEach(i => html += `<td>${pars[i] || '-'}</td>`);
+                html += `<td><strong>${entry.score_vs_par || 'E'}</strong></td></tr>`;
+            }
+            html += '<tr><td><strong>Score</strong></td>';
+            dataIndices.forEach(i => {
+                const score = scores[i] || '-', par = pars && pars[i] ? parseInt(pars[i], 10) : null;
+                const n = parseInt(score, 10);
+                let style = '';
+                if (!isNaN(n) && par !== null) {
+                    if (n === 1) style = 'color:#FFD700;font-weight:bold;';
+                    else {
+                        const diff = n - par;
+                        if (diff <= -2) style = 'color:#00BFFF;font-weight:bold;';
+                        else if (diff === -1) style = 'color:var(--score-under);font-weight:bold;';
+                        else if (diff > 0)  style = 'color:var(--score-over);font-weight:bold;';
+                    }
+                }
+                html += `<td style="${style}">${score}</td>`;
+            });
+            html += `<td><strong>${entry.total_score || 'N/A'}</strong></td></tr></tbody></table></div>`;
+            return html;
+        }
+
+        function showVideoModal(entry) { showScorecard(entry); }
+        function closeModal() { document.getElementById('scorecardModal').classList.remove('active'); }
+        function showJoinModal() { document.getElementById('joinModal').classList.add('active'); }
+        function closeJoinModal() { document.getElementById('joinModal').classList.remove('active'); }
+
+        document.getElementById('scorecardModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        document.getElementById('joinModal').addEventListener('click', function(e) { if (e.target === this) closeJoinModal(); });
     </script>
 </body>
 </html>
