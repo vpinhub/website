@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How to Update VPinMAME to 3.7 | VPINHUB</title>
+    <meta name="description" content="How to update Visual PinMAME (VPinMAME) to the 3.7 pre-release on Windows Visual Pinball X 10.8: download, back up, replace, register with Setup and check the build number.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Encode+Sans:wght@400;700;900&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Encode Sans', sans-serif; background: #020617; color: white; transition: background 0.5s ease; overflow-x: hidden; }
+        .medieval { font-family: 'MedievalSharp', cursive; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.08); }
+        .hero-gradient { background: radial-gradient(circle at top, #1e293b 0%, #020617 70%); }
+
+        .hub-card { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .hub-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
+
+        .glow-orange { box-shadow: 0 0 20px rgba(249, 115, 22, 0.15); }
+        .glow-fuchsia { box-shadow: 0 0 20px rgba(217, 70, 239, 0.15); }
+        .glow-indigo { box-shadow: 0 0 20px rgba(99, 102, 241, 0.15); }
+        .glow-amber { box-shadow: 0 0 20px rgba(245, 158, 11, 0.15); }
+        .glow-emerald { box-shadow: 0 0 20px rgba(16, 185, 129, 0.15); }
+        .glow-cyan { box-shadow: 0 0 20px rgba(6, 182, 212, 0.15); }
+
+        /* Dropdown Magic */
+        .nav-dropdown { visibility: hidden; opacity: 0; transform: translateY(10px); transition: all 0.3s ease; }
+        .group:hover .nav-dropdown { visibility: visible; opacity: 1; transform: translateY(0); }
+
+        /* Mobile Menu Transitions */
+        #mobile-menu { transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out; max-height: 0; opacity: 0; overflow: hidden; }
+        #mobile-menu.open { max-height: 1000px; opacity: 1; }
+
+        /* Guide extras */
+        html { scroll-behavior: smooth; }
+        section[id], div[id] { scroll-margin-top: 110px; }
+        code { color: #e879f9; background: rgba(255,255,255,0.05); padding: 0.1rem 0.3rem; border-radius: 0.25rem; font-size: 0.9em; }
+        pre code { color: #d1d5db; background: none; padding: 0; font-size: inherit; }
+        .shot { display: block; }
+        .shot img { border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.1); max-width: 100%; height: auto; transition: border-color 0.3s ease; }
+        .shot:hover img { border-color: rgba(255,255,255,0.3); }
+        .caption { font-size: 0.75rem; color: #9ca3af; font-style: italic; margin-top: 0.5rem; }
+        .guide-table { width: 100%; font-size: 0.875rem; border-collapse: collapse; }
+        .guide-table th { text-align: left; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 900; color: #6b7280; padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.04); }
+        .guide-table td { padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #d1d5db; vertical-align: top; }
+        .guide-table td:first-child { color: white; font-weight: 700; }
+        .table-wrap { overflow-x: auto; border-radius: 0.75rem; border: 1px solid rgba(255,255,255,0.05); background: rgba(0,0,0,0.3); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col hero-gradient">
+
+        <nav class="glass border-b border-white/10 p-4 md:p-6 sticky top-0 z-50">
+        <div class="container mx-auto flex flex-wrap items-center justify-between gap-4">
+
+            <div class="flex items-center gap-4">
+                <a href="https://vpinhub.com/" class="hover:opacity-80 transition-opacity">
+                    <h1 class="text-2xl md:text-3xl font-black italic tracking-tighter uppercase leading-none">VPIN<span class="text-orange-500">HUB</span></h1>
+                </a>
+            </div>
+
+            <div class="hidden xl:flex items-center gap-6 text-[10px] md:text-xs font-bold uppercase tracking-widest">
+                <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300 transition-colors">Join Our Discord</a>
+                <span class="text-white/20">|</span>
+                <a href="https://vpinhub.com/competition" class="text-orange-400 hover:text-orange-300 transition-colors">Competition</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-emerald-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Tutorials <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full left-1/2 -translate-x-1/2 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">GUIDES & TUTORIALS</span>
+                        </div>
+                        <a href="https://vpinhub.com/how-to-build-a-vpin-cab.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Build a VPIN Cab</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpinhub.com/how-to-update-vpin.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Update VPIN</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpinhub.com/how-to-setup-altsound2.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Setup AltSound2</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="how-to-update-vpinmame.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Update VPinMAME 3.7</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpinhub.com/how-to-play-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Play Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpinhub.com/how-to-stream-pinball.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>How to Stream Pinball</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpinhub.com/vpx-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpinhub.com/fp-table-tutorials.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FP Table Tutorials</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpinhub.com/fp-aio-update.html" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP All-in-One</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+
+                <a href="https://vpinhub.com/interviews.html" class="text-gray-300 hover:text-fuchsia-400 transition-colors">Interviews</a>
+                <span class="text-white/20">|</span>
+                <a href="https://vpinhub.com/showcase.html" class="text-gray-300 hover:text-cyan-400 transition-colors">Latest Tables</a>
+
+                <div class="relative group py-2">
+                    <button class="text-gray-300 hover:text-cyan-400 flex items-center gap-2 transition-colors focus:outline-none uppercase tracking-widest">
+                        Downloads <span class="text-[8px]">▼</span>
+                    </button>
+                    <div class="nav-dropdown absolute top-full right-0 mt-1 w-64 bg-slate-900 border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden z-50">
+                        <div class="bg-white/5 px-4 py-2 border-b border-white/10">
+                            <span class="text-[9px] text-gray-500 font-black">ESSENTIAL SOFTWARE</span>
+                        </div>
+                        <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>PinUp Popper 'Baller'</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>VPX Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>B2S Server Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>Freezy DMDEXT Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>FLEX DMD Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white border-b border-white/5 flex justify-between items-center transition-colors">
+                            <span>DOF Tool Config V3</span> <span class="text-[10px]">↗</span>
+                        </a>
+                        <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="px-4 py-3 hover:bg-white/10 text-gray-300 hover:text-white flex justify-between items-center transition-colors">
+                            <span>FP Latest</span> <span class="text-[10px]">↗</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <button id="menu-btn" class="xl:hidden bg-white/10 hover:bg-white/20 px-4 py-2 rounded-lg text-white transition-colors font-bold text-sm uppercase tracking-widest">
+                MENU ☰
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="xl:hidden flex flex-col gap-4 mt-4 pt-4 border-t border-white/10 text-xs font-bold uppercase tracking-widest px-2 pb-2">
+            <a href="https://discord.gg/rnaRKNgCjB" target="_blank" class="text-indigo-400 hover:text-indigo-300">Join Our Discord</a>
+            <a href="https://vpinhub.com/competition" class="text-orange-400 hover:text-orange-300">Competition</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Tutorials</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="https://vpinhub.com/how-to-build-a-vpin-cab.html" class="text-gray-400 hover:text-white text-[10px]">How to Build a VPIN Cab</a>
+                    <a href="https://vpinhub.com/how-to-update-vpin.html" class="text-gray-400 hover:text-white text-[10px]">How to Update VPIN</a>
+                    <a href="https://vpinhub.com/how-to-setup-altsound2.html" class="text-gray-400 hover:text-white text-[10px]">How to Setup AltSound2</a>
+                    <a href="how-to-update-vpinmame.html" class="text-gray-400 hover:text-white text-[10px]">How to Update VPinMAME 3.7</a>
+                    <a href="https://vpinhub.com/how-to-play-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Play Pinball</a>
+                    <a href="https://vpinhub.com/how-to-stream-pinball.html" class="text-gray-400 hover:text-white text-[10px]">How to Stream Pinball</a>
+                    <a href="https://vpinhub.com/vpx-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">VPX Table Tutorials</a>
+                    <a href="https://vpinhub.com/fp-table-tutorials.html" class="text-gray-400 hover:text-white text-[10px]">FP Table Tutorials</a>
+                    <a href="https://vpinhub.com/fp-aio-update.html" class="text-gray-400 hover:text-white text-[10px]">FP All-in-One</a>
+                </div>
+            </div>
+
+            <a href="https://vpinhub.com/interviews.html" class="text-fuchsia-400 hover:text-fuchsia-300">Interviews</a>
+            <a href="https://vpinhub.com/showcase.html" class="text-cyan-400 hover:text-cyan-300">Latest Tables</a>
+
+            <div class="pt-2 pb-2">
+                <span class="text-gray-500 mb-3 block">Software Downloads</span>
+                <div class="flex flex-col gap-3 pl-4 border-l-2 border-white/10">
+                    <a href="https://www.nailbuster.com/wikipinup/doku.php?id=baller_installer" target="_blank" class="text-gray-400 hover:text-white text-[10px]">PinUp Popper 'Baller'</a>
+                    <a href="https://github.com/vpinball/vpinball/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">VPX Latest</a>
+                    <a href="https://github.com/vpinball/b2s-backglass/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">B2S Server Latest</a>
+                    <a href="https://github.com/freezy/dmd-extensions/releases" target="_blank" class="text-gray-400 hover:text-white text-[10px]">Freezy DMDEXT Latest</a>
+                    <a href="https://github.com/vbousquet/flexdmd/releases/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FLEX DMD Latest</a>
+                    <a href="https://configtool.vpuniverse.com/app/home" target="_blank" class="text-gray-400 hover:text-white text-[10px]">DOF Tool Config V3</a>
+                    <a href="https://vpuniverse.com/files/file/14807-future-pinball-and-bam-essentials-all-in-one/" target="_blank" class="text-gray-400 hover:text-white text-[10px]">FP Latest</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+<main class="flex-1 container mx-auto px-6 py-12 max-w-6xl">
+
+        <!-- ===================================================== HEADER -->
+        <div class="mb-12">
+            <h2 class="text-4xl md:text-5xl font-black italic uppercase mb-2 text-white">Update VPinMAME to 3.7</h2>
+            <p class="text-orange-400 font-bold tracking-widest uppercase text-sm mb-6">Beta / Pre-release · Windows VPX 10.8</p>
+
+            <div class="glass p-6 md:p-8 rounded-2xl border-l-4 border-orange-500 text-gray-300 text-sm md:text-base leading-relaxed">
+                <p>Some new table releases say <em>"You will need the latest pre-release of VPinMAME (build v3.7.0-237 or later)"</em>. VPinMAME is the ROM emulator that the Windows version of Visual Pinball talks to. Updating it means swapping <span class="text-white font-bold">one DLL and one setup program</span> in your VPinMAME folder and pressing <strong>Install</strong>. Your ROMs, high scores and settings stay where they are.</p>
+                <p class="mt-2 text-xs italic text-gray-400">Written from the official PinMAME release files, README and 3.7 change notes. File names and sizes are from build 3.7.0-477. Back up before you start (step 3).</p>
+            </div>
+        </div>
+
+        <!-- ===================================================== QUICK NAV -->
+        <div class="glass rounded-2xl p-6 mb-12 border-t border-white/5">
+            <span class="text-[10px] text-gray-500 font-black uppercase tracking-widest block mb-4">Jump to</span>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs font-bold uppercase tracking-widest">
+                <a href="#need" class="text-gray-300 hover:text-emerald-400 transition-colors">1. Do You Need It?</a>
+                <a href="#download" class="text-gray-300 hover:text-cyan-400 transition-colors">2. Download</a>
+                <a href="#backup" class="text-gray-300 hover:text-orange-400 transition-colors">3. Find &amp; Back Up</a>
+                <a href="#install" class="text-gray-300 hover:text-indigo-400 transition-colors">4. Replace &amp; Install</a>
+                <a href="#verify" class="text-gray-300 hover:text-amber-400 transition-colors">5. Check the Version</a>
+                <a href="#example" class="text-gray-300 hover:text-fuchsia-400 transition-colors">6. Example Table</a>
+                <a href="#rollback" class="text-gray-300 hover:text-rose-400 transition-colors">7. Going Back</a>
+                <a href="#troubleshooting" class="text-gray-300 hover:text-emerald-400 transition-colors">8. Troubleshooting</a>
+            </div>
+        </div>
+
+        <!-- ===================================================== VIDEO -->
+        <div class="mb-16">
+            <div class="glass p-4 rounded-2xl shadow-lg border border-white/5 glow-indigo">
+                <div class="aspect-w-16 aspect-h-9 w-full">
+                    <iframe src="https://www.youtube.com/embed/s4bjCE2Fh3E" frameborder="0" allowfullscreen class="rounded-xl w-full min-h-[400px]"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================== 1. NEED -->
+        <div id="need" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-8 border-b border-white/10 pb-4">1. Do You Need This?</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass p-6 rounded-2xl border-l-4 border-emerald-500">
+                    <h4 class="text-lg font-black text-white uppercase tracking-wider mb-4">Yes, if you play on Windows VPX 10.8</h4>
+                    <ul class="text-gray-300 text-sm space-y-2 list-disc pl-5">
+                        <li>You run <code>VPinballX64.exe</code> or <code>VPinballX_GL64.exe</code>, usually through PinUP Popper or another frontend.</li>
+                        <li>A table's notes ask for VPinMAME 3.7 or a minimum build number.</li>
+                        <li>A table shows errors or lamps, flashers or solenoids that don't behave, and the author says to update VPinMAME.</li>
+                    </ul>
+                </div>
+                <div class="glass p-6 rounded-2xl border-l-4 border-cyan-500">
+                    <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">"VPinMAME", not "PinMAME"</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">The release page has several downloads. <strong>PinMAME</strong>, <strong>PinMAME32</strong> and <strong>libpinmame</strong> are for developers and other programs. Only <strong>VPinMAME</strong> is the one Visual Pinball uses.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================== 2. DOWNLOAD -->
+        <div id="download" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-4 border-b border-white/10 pb-4">2. Download the Right Zip</h3>
+            <p class="text-gray-300 text-sm leading-relaxed mb-8">Go to <a href="https://github.com/vpinball/pinmame/releases" target="_blank" class="text-cyan-400 hover:underline">github.com/vpinball/pinmame/releases</a>. The 3.7 builds are marked <span class="text-white font-bold">Pre-release</span> and listed above the last full release (3.6). Take the <span class="text-white font-bold">newest</span> 3.7 pre-release, open <strong>Assets</strong>, and pick one zip.</p>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <div class="table-wrap">
+                        <table class="guide-table">
+                            <tr><th>Zip</th><th>Use it when</th></tr>
+                            <tr><td><code>VPinMAME-3.7.0-…-win-x64.zip</code></td><td>you run 64-bit VPX (<code>VPinballX64.exe</code>, <code>VPinballX_GL64.exe</code>). <span class="text-white font-bold">Most setups.</span></td></tr>
+                            <tr><td><code>VPinMAME-3.7.0-…-win-x86.zip</code></td><td>you run 32-bit VPX (<code>VPinballX.exe</code>). You can install both.</td></tr>
+                            <tr><td><code>VPinMAME-sc-3.7.0-…</code></td><td>skip it. It adds the colourised Stern S.A.M. ROM sets (legacy colour mods); only use it if you know you need those ROMs.</td></tr>
+                        </table>
+                    </div>
+                    <p class="text-gray-400 text-xs mt-4 leading-relaxed">Use the regular <code>VPinMAME-</code> zip. Ignore the <code>PinMAME-</code>, <code>PinMAME32-</code> and <code>libpinmame-</code> zips. The number after <code>3.7.0-</code> is the <span class="text-white font-bold">build</span>: higher is newer.</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="glass p-6 rounded-2xl border-l-4 border-emerald-500">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">Direct downloads: build 477</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-4">The newest pre-release on 5 Nov 2026, and the one used for this guide:</p>
+                        <div class="flex flex-col gap-3">
+                            <a href="https://github.com/vpinball/pinmame/releases/download/v3.7.0-477-6589fc5/VPinMAME-3.7.0-477-6589fc5-win-x64.zip" class="text-center bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black uppercase tracking-widest text-xs px-4 py-3 rounded-xl transition-colors">⬇ VPinMAME 3.7.0-477 · x64 (64-bit, most setups)</a>
+                            <a href="https://github.com/vpinball/pinmame/releases/download/v3.7.0-477-6589fc5/VPinMAME-3.7.0-477-6589fc5-win-x86.zip" class="text-center bg-white/10 hover:bg-white/20 text-white font-bold uppercase tracking-widest text-xs px-4 py-3 rounded-xl transition-colors">⬇ VPinMAME 3.7.0-477 · x86 (32-bit)</a>
+                        </div>
+                        <p class="text-gray-400 text-xs mt-4 leading-relaxed">Newer builds come out often. Check the <a href="https://github.com/vpinball/pinmame/releases" target="_blank" class="text-cyan-400 hover:underline">releases page</a> for a higher number before you download.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl border-t border-white/5">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">What's in the x64 zip</h4>
+<pre class="bg-black/40 rounded-xl p-4 text-xs leading-5 text-gray-300 border border-white/5 overflow-x-auto"><code><span class="text-white font-bold">VPinMAME64.dll</span>          the emulator (12 MB)
+<span class="text-white font-bold">Setup64.exe</span>             registers it with Windows
+VPMAlias_template.txt   built-in ROM aliases (reference)
+gamelist.txt            supported games
+whatsnew.txt, whatsnewVPM.txt, pinmame.txt,
+visual pinmame.txt, license.txt</code></pre>
+                        <p class="caption">The x86 zip has <code>VPinMAME.dll</code> and <code>Setup.exe</code> instead. Only the two bold files matter for the update.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl border-l-4 border-l-rose-500">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">Check the build number</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">If a table asks for "3.7.0-237 or later", build <strong>222</strong> is too old, even though it's also 3.7. On 5 Nov 2026 the newest pre-release was <strong>3.7.0-477</strong>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================== 3. BACKUP -->
+        <div id="backup" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-4 border-b border-white/10 pb-4">3. Find Your VPinMAME Folder &amp; Back Up</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase tracking-wider mb-4">Where is it?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">It's the folder that holds <code>VPinMAME64.dll</code>, <code>Setup64.exe</code> and the <code>roms</code>, <code>nvram</code> and <code>cfg</code> folders. Common places:</p>
+                    <ul class="text-gray-300 text-sm space-y-2 list-disc pl-5">
+                        <li><code>C:\vPinball\VisualPinball\VPinMAME\</code> (PinUP Popper "Baller" installs)</li>
+                        <li><code>C:\Visual Pinball\VPinMAME\</code> (older manual installs)</li>
+                    </ul>
+                    <p class="text-gray-400 text-xs mt-4 leading-relaxed">Not sure? Search your drive for <code>VPinMAME64.dll</code>. If you find more than one, the one that's registered is the one Setup last installed. Running Setup from the right folder in step 4 fixes that anyway.</p>
+                    <h4 class="text-lg font-black text-white uppercase tracking-wider mt-8 mb-4">What do you have now?</h4>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">Run <code>Setup64.exe</code> in that folder and read the line near the top. This machine had build <strong>222</strong>, too old for tables that need 237 or later. Press <strong>Quit</strong>.</p>
+                    <a class="shot" href="images/how-to-update-vpinmame/01-setup-before.png" target="_blank"><img src="images/how-to-update-vpinmame/01-setup-before.png" alt="VPinMAME Installation program: Visual PinMAME Version 3.7.0.222.8133307 is currently installed" loading="lazy"></a>
+                    <p class="caption">Before: "Version 3.7.0.222.8133307 is currently installed".</p>
+                </div>
+                <div class="space-y-6">
+                    <div class="glass p-6 rounded-2xl border-l-4 border-l-orange-500 glow-orange">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">Back up first</h4>
+                        <ol class="text-gray-300 text-sm space-y-2 list-decimal pl-5">
+                            <li>Make a folder named after the version you have, such as <code>VPinMAME\_backup-3.7.0-222</code> or <code>VPinMAME\_backup-3.6</code>.</li>
+                            <li>Copy <code>VPinMAME64.dll</code>, <code>Setup64.exe</code> (and <code>VPinMAME.dll</code>, <code>Setup.exe</code> if you have them) into it.</li>
+                        </ol>
+                        <p class="text-gray-400 text-xs mt-3 leading-relaxed">That's all you need to go back (section 7).</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl border-l-4 border-emerald-500">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">Don't touch</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed"><code>roms</code>, <code>nvram</code> (high scores), <code>cfg</code> (game settings), <code>altsound</code>, <code>altcolor</code>, <code>VPMAlias.txt</code> and any <code>dmddevice.dll</code>. The update doesn't replace them.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================== 4. INSTALL -->
+        <div id="install" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-4 border-b border-white/10 pb-4">4. Replace the Files &amp; Press Install</h3>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-xl font-black text-white uppercase mb-4">Step by step</h4>
+                    <ol class="text-gray-300 text-sm space-y-3 list-decimal pl-5">
+                        <li><span class="text-white font-bold">Close</span> Visual Pinball, your frontend (PinUP Popper, PinballY…) and anything else using VPinMAME. Windows won't let you replace a DLL that's in use.</li>
+                        <li>Right-click the downloaded zip › <strong>Properties</strong>. If there's an <strong>Unblock</strong> box at the bottom, tick it and press OK.</li>
+                        <li>Extract the zip to a temporary folder (not straight into VPinMAME).</li>
+                        <li>Copy <code>VPinMAME64.dll</code> and <code>Setup64.exe</code> into your VPinMAME folder and choose <strong>Replace</strong>.</li>
+                        <li>Right-click <code>Setup64.exe</code> in the VPinMAME folder › <strong>Run as administrator</strong>. If Windows Defender says it "protected your PC", click <strong>More info › Run anyway</strong>, then <strong>Yes</strong> when Windows asks to allow changes.</li>
+                        <li>Press <strong>Install</strong>. It registers this folder's DLL with Windows and should confirm it.</li>
+                        <li>Close Setup. You don't need to change any defaults.</li>
+                        <li>Using 32-bit VPX too? Repeat with <code>VPinMAME.dll</code> and <code>Setup.exe</code> from the x86 zip.</li>
+                    </ol>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6">
+                        <div>
+                            <a class="shot" href="images/how-to-update-vpinmame/03-install-confirm.png" target="_blank"><img src="images/how-to-update-vpinmame/03-install-confirm.png" alt="You have selected to install version 3.7.0.477.6589fc5 of Visual PinMAME! Are you ready to proceed? Yes / No" loading="lazy"></a>
+                            <p class="caption">Install asks first: check the build number, then press <strong>Yes</strong>.</p>
+                        </div>
+                        <div>
+                            <a class="shot" href="images/how-to-update-vpinmame/04-install-success.png" target="_blank"><img src="images/how-to-update-vpinmame/04-install-success.png" alt="Visual PinMAME installed successfully!" loading="lazy"></a>
+                            <p class="caption">"Visual PinMAME installed successfully!" Press <strong>OK</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    <div class="glass p-6 rounded-2xl border-l-4 border-cyan-500">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">Why press Install?</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">VPX finds VPinMAME through Windows (it's a COM object, <code>VPinMAME.Controller</code>). Install records which DLL to use. Pressing it after every update makes sure Windows points at the new file in this folder, not an old copy somewhere else.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed mt-3">Don't be fooled if Setup already shows the new number before you press Install. It reads the DLL Windows has registered, and if that's the same file you just replaced, it shows the new version straight away. Press Install anyway.</p>
+                    </div>
+                    <div class="glass p-6 rounded-2xl border-t border-white/5">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">The other text files</h4>
+                        <ul class="text-gray-400 text-sm space-y-2 list-disc pl-5">
+                            <li><code>whatsnew*.txt</code>, <code>gamelist.txt</code>: safe to copy over, just documentation.</li>
+                            <li><code>VPMAlias_template.txt</code>: new in 3.7. It lists the built-in aliases for reference. The 3.7 zips no longer include a <code>VPMAlias.txt</code>, so your own edited one is safe; it now only needs your personal entries.</li>
+                        </ul>
+                    </div>
+                    <div class="glass p-6 rounded-2xl border-l-4 border-l-orange-500 glow-orange">
+                        <h4 class="text-lg font-black text-white uppercase tracking-wider mb-3">Update core.vbs too</h4>
+                        <p class="text-gray-400 text-sm leading-relaxed">Newer tables also expect the 10.8 scripts (<code>core.vbs</code>, <code>controller.vbs</code>…) in <code>VisualPinball\Scripts\</code>. If you've updated VPX itself recently, you have them.</p>
+                        <p class="text-gray-400 text-sm leading-relaxed mt-3"><span class="text-white font-bold">Using PinUP Popper?</span> The <strong>Popper Updater</strong> should take care of this for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================== 5. VERIFY -->
+        <div id="verify" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-4 border-b border-white/10 pb-4">5. Check Which Version Windows Uses</h3>
+            <p class="text-gray-300 text-sm leading-relaxed mb-6"><span class="text-white font-bold">Easiest:</span> run <code>Setup64.exe</code> again. Near the top of its window it says <em>"Visual PinMAME Version 3.7.0.… is currently installed on your computer"</em>. The number after <code>3.7.0.</code> is the build; it should match the zip you downloaded (for example <code>3.7.0.477</code>). Then press <strong>Quit</strong>. <code>Setup.exe</code> does the same for the 32-bit version.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+                <div>
+                    <a class="shot" href="images/how-to-update-vpinmame/02-setup-new.png" target="_blank"><img src="images/how-to-update-vpinmame/02-setup-new.png" alt="VPinMAME Installation program: Visual PinMAME Version 3.7.0.477.6589fc5 is currently installed" loading="lazy"></a>
+                    <p class="caption">After: "Version 3.7.0.477.6589fc5 is currently installed".</p>
+                </div>
+                <div>
+                    <a class="shot" href="images/how-to-update-vpinmame/05-info-about.png" target="_blank"><img src="images/how-to-update-vpinmame/05-info-about.png" alt="About Visual PinMAME: Version 3.7.0.477.6589fc5 (x64), Sep 2 2026" loading="lazy"></a>
+                    <p class="caption"><strong>Info…</strong> in Setup shows the build date and whether it's the <strong>(x64)</strong> or 32-bit DLL.</p>
+                </div>
+            </div>
+            <p class="text-gray-300 text-sm leading-relaxed mb-8">Or check without opening Setup, with this small script:</p>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <ol class="text-gray-300 text-sm space-y-3 list-decimal pl-5">
+                        <li>Open Notepad and paste the two lines on the right.</li>
+                        <li>Save as <code>vpm-version.vbs</code> on your desktop (Save as type: <em>All Files</em>).</li>
+                        <li>Double-click it. A box shows the version and build.</li>
+                    </ol>
+                    <p class="text-gray-400 text-xs mt-4 leading-relaxed">Double-clicking runs the 64-bit script host, so it checks <span class="text-white font-bold">64-bit</span> VPinMAME. <code>Version</code> shows <code>03070000</code> for every 3.7 build, so look at the second line: <code>PMBuildVersion</code> is new in 3.7, and <code>30700.0477</code> means 3.7.0 build 477. On an older VPinMAME the second line gives an error, which also tells you it isn't updated.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+<pre class="bg-black/40 rounded-xl p-4 text-xs leading-5 text-gray-300 border border-white/5 overflow-x-auto"><code>Set c = CreateObject("VPinMAME.Controller")
+MsgBox "VPinMAME " &amp; c.Version &amp; vbCrLf &amp; "Build " &amp; c.PMBuildVersion</code></pre>
+                    <a class="shot mt-6" href="images/how-to-update-vpinmame/06-test-msgbox.png" target="_blank"><img src="images/how-to-update-vpinmame/06-test-msgbox.png" alt="Message box: VPinMAME 03070000, Build 30700.0477" loading="lazy"></a>
+                    <p class="caption">The result after updating to build 477.</p>
+                    <p class="caption">"Can't create object" means VPinMAME isn't registered for this bitness: go back to step 4 and press Install as administrator.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================== 6. EXAMPLE -->
+        <div id="example" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-4 border-b border-white/10 pb-4">6. Example: Dungeons &amp; Dragons (Bally 1987) 2.4</h3>
+            <div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">The VPW mod by RobbyKingPin and team asks for <em>"the latest pre-release of VPinMAME (build v3.7.0-237 or later)… not PinMAME, it has to be VPinMAME"</em>.</p>
+                    <p class="text-gray-300 text-sm leading-relaxed mb-4">Its script uses <code>UseVPMModSol = 2</code>, the newer mode where VPinMAME reports the real brightness of lamps, flashers and solenoids. Older VPinMAME builds don't handle it the way this table expects.</p>
+                    <ul class="text-gray-300 text-sm space-y-2 list-disc pl-5">
+                        <li><a href="https://virtualpinballspreadsheet.github.io/?game=U3s7AsZP&amp;fileType=table#QrU6V1UoUr" target="_blank" class="text-cyan-400 hover:underline">Virtual Pinball Spreadsheet entry</a> (download links, backglass, ROM)</li>
+                        <li><a href="https://www.youtube.com/watch?v=s4bjCE2Fh3E" target="_blank" class="text-cyan-400 hover:underline">Video</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===================================================== 7. ROLLBACK -->
+        <div id="rollback" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-4 border-b border-white/10 pb-4">7. Going Back to Your Old Version</h3>
+            <div class="glass p-6 rounded-2xl border-t border-white/5">
+                <p class="text-gray-300 text-sm leading-relaxed mb-4">3.7 is a pre-release. If an older table misbehaves:</p>
+                <ol class="text-gray-300 text-sm space-y-2 list-decimal pl-5">
+                    <li>Close VPX and your frontend.</li>
+                    <li>Copy <code>VPinMAME64.dll</code> and <code>Setup64.exe</code> back from your backup folder (for example <code>_backup-3.7.0-222</code>) into the VPinMAME folder, replacing the new ones.</li>
+                    <li>Run <code>Setup64.exe</code> as administrator and press <strong>Install</strong>.</li>
+                </ol>
+                <p class="text-gray-400 text-xs mt-4 leading-relaxed">Report the table on the PinMAME GitHub or Discord, so it can be fixed before 3.7 is final.</p>
+            </div>
+        </div>
+
+        <!-- ===================================================== 8. TROUBLESHOOTING -->
+        <div id="troubleshooting" class="mb-16">
+            <h3 class="text-2xl md:text-3xl font-black uppercase italic text-white mb-8 border-b border-white/10 pb-4">8. Troubleshooting</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase mb-2">"File is in use"</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Something still has VPinMAME loaded. Close the frontend and VPX (check the system tray), or restart Windows and copy again.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase mb-2">"Can't create object VPinMAME.Controller"</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Not registered for this VPX. Run the matching Setup (64 for 64-bit VPX) as administrator and press Install.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase mb-2">Still the old version</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Windows points at another copy. Run Setup from the folder you updated and press Install again.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase mb-2">Antivirus removed the DLL</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Some antivirus programs flag new emulator builds. Restore it from quarantine, add an exception for the VPinMAME folder, and download only from the official GitHub page.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase mb-2">Works from VPX, not from the frontend</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">The frontend may launch 32-bit <code>VPinballX.exe</code>, which uses the 32-bit VPinMAME. Update that one too (x86 zip), or point the frontend at <code>VPinballX64.exe</code> / <code>VPinballX_GL64.exe</code>.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase mb-2">High scores gone</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">They're in <code>nvram</code>, which the update doesn't touch. Check VPX is using the same VPinMAME folder as before.</p>
+                </div>
+                <div class="glass p-6 rounded-2xl border-t border-white/5">
+                    <h4 class="text-lg font-black text-white uppercase mb-2">Colour S.A.M. ROM not found</h4>
+                    <p class="text-gray-400 text-sm leading-relaxed">Those sets are only in the <code>VPinMAME-sc-</code> zips. Install that variant instead.</p>
+                </div>
+            </div>
+
+            <div class="glass p-6 md:p-8 rounded-2xl bg-indigo-900/20 border border-indigo-500/30 text-center glow-indigo">
+                <h4 class="text-2xl font-black text-white uppercase italic mb-2">💎 VPINMAME PRO TIP</h4>
+                <p class="text-gray-300 text-sm max-w-3xl mx-auto leading-relaxed mb-4">Keep the <span class="text-white font-bold">backup folder</span> and the downloaded zip. Switching between versions is just two files and an Install press, so you can always test a new build and go back in a minute.</p>
+                <p class="text-emerald-400 font-bold text-sm">Using PinUP Popper "Baller"?<br><span class="text-gray-400 font-normal italic">Its update utility can do this for you. This guide is for when a table needs a newer build than the utility offers.</span></p>
+                <p class="text-gray-500 text-xs mt-6">Sources: <a href="https://github.com/vpinball/pinmame/releases" target="_blank" class="text-cyan-400 hover:underline">PinMAME releases</a> (3.7.0-477 zips, <em>visual pinmame.txt</em>, <em>whatsnewVPM.txt</em>), the <a href="https://github.com/vpinball/pinmame" target="_blank" class="text-cyan-400 hover:underline">PinMAME README</a>, and tjaf's VPUniverse tutorial <a href="https://vpuniverse.com/tutorials/article/39-manually-updating-vpx-vpinmame-and-b2s-server/" target="_blank" class="text-cyan-400 hover:underline">Manually updating VPX, VPinMAME and B2S server</a>, which also covers updating VPX and B2S Server.</p>
+                <h5 class="text-xl font-black text-white uppercase tracking-widest mt-6">Happy Gaming!</h5>
+            </div>
+        </div>
+
+    </main>
+
+
+
+    <footer class="bg-black/40 border-t border-white/5 py-8 mt-auto">
+        <div class="container mx-auto px-6 text-center flex justify-center items-center gap-4">
+            <p class="text-gray-600 text-[10px] font-bold uppercase tracking-widest">
+                © VPINHUB.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            if (mobileMenu.classList.contains('open')) {
+                mobileMenu.classList.remove('open');
+            } else {
+                mobileMenu.classList.add('open');
+            }
+        });
+    </script>
+</body>
+</html>
